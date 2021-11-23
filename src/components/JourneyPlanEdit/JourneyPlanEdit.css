@@ -1,0 +1,40 @@
+.journey-plan-edit {
+    /*margin-top: 90px;*/
+    background-color: #132968;
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+}
+
+.current-journey-details {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+.plan-edit-container {
+    border-radius: 8px;
+    /*background-color: #132968;*/
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    padding: 90px 10px 5px 10px;
+}
+
+.trip-summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-search-btn {
+    padding: 4px 8px;
+    background-color: initial;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    margin-left: 10px;
+}
+
+.edit-search-btn:hover {
+    background: rgba(161,169,195,.1);
+}

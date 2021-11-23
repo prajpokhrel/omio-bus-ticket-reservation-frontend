@@ -1,0 +1,21 @@
+.popular-connections-section {
+    background-color: #132968;
+}
+
+.popular-connections-container {
+    color: #FFFFFF;
+    padding: 80px 30px 80px 30px;
+}
+
+.route-lists {
+    line-height: 50px;
+    list-style-type: none;
+}
+
+.route-lists a {
+    color: #FFFFFF;
+}
+
+.route-lists a:hover {
+    text-decoration: underline;
+}

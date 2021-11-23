@@ -1,0 +1,26 @@
+.newsletter-section {
+    background-color: #FFFFFF;
+}
+
+.newsletter-contents {
+    padding: 100px 50px 15px 50px;
+    color: #132968;
+}
+
+.underline-div {
+    width: 40px;
+    border-top: 4px solid #A1A9C3;
+}
+
+.newsletter-small-title {
+    letter-spacing: 1px;
+    color: #A1A9C3;
+}
+
+.sign-me-container {
+    padding: 70px 0 100px 0;
+}
+
+.newsletter-btn {
+    margin-left: 50px;
+}

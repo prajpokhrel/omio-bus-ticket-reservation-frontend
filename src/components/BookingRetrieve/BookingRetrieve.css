@@ -1,0 +1,38 @@
+.retrieve-booking {
+    margin-top: 100px;
+}
+
+.retrieve-container {
+    margin-top: 20px;
+    border-radius: 8px;
+    /*box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 20px 20px 20px 30px;
+    background-color: #FFFFFF;
+}
+
+.booking-title, .retrieve-title {
+    color: #132968;
+}
+
+.retrieve-content {
+    color: #425486;
+    font-weight: 500;
+}
+
+.ticket-image-container {
+    display: none;
+}
+
+.ticket-image-div {
+    width: 50%;
+    height: 50%;
+}
+
+@media only screen and (min-width: 768px) {
+    .ticket-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

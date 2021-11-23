@@ -1,0 +1,202 @@
+.reservation-title {
+    background-color: #132968;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 10px 20px 10px;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.reservation-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 25px 20px 25px 20px;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.reserve-title {
+    font-weight: 400;
+    color: #132968;
+}
+
+.reserve-dest-container {
+    color: #A1A9C3;
+}
+
+.reserve-date-time {
+    margin-top: 15px;
+}
+
+.departure-detail {
+    color: #666670;
+    font-size: 14px;
+}
+
+.departure-detail b {
+    color: #132968;
+}
+
+.reserve-destination {
+    font-size: 14px;
+    color: #132968;
+}
+
+.driver-seat-container {
+    width: 105px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #DDDDDD;
+    border: 1px solid #C4C4C4;
+    margin-left: 155px;
+    color: #425486;
+}
+
+.steering-wheel {
+    width: 25px;
+    margin-right: 10px;
+}
+
+.toilet-container {
+    width: 105px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #DDDDDD;
+    border: 1px solid #C4C4C4;
+    color: #425486;
+}
+
+.bus-map {
+    max-width: 290px;
+    padding: 10px;
+    height: auto;
+    background-color: #DDDDDD;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.seats-selection {
+    font-weight: 400;
+    margin: 25px 0 25px 0;
+    text-align: center;
+    color: #132968;
+}
+
+.seat-selection-div {
+    padding: 10px;
+    /*background-color: #F7F7F7;*/
+    /*background-color: #DDDDDD;*/
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+
+.seat-selection-div span {
+    color: #132968;
+    font-weight: 500;
+}
+
+.seat-selection-div h5 {
+    color: #132968;
+    font-weight: 600;
+}
+
+.seat-price-div span {
+    color: #132968;
+    font-weight: 500;
+}
+
+.seat-price-div {
+    padding: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.seat-booking-div {
+    padding: 0 10px 20px 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.reserve-seat-price {
+    color: #132968;
+    font-weight: 700;
+}
+
+/*seat labels*/
+.seat-booking-label {
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.seat-info-text {
+    color: #132968;
+    font-size: 14px;
+}
+
+.seat-label-center {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.seat-label-text {
+    color: #132968;
+    font-size: 14px;
+}
+
+.seat-label-container {
+    width: 30px;
+    height: 30px;
+    outline: 1px solid black;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-self: center;*/
+    /*flex-direction: column;*/
+    background-color: #FFFFFF;
+}
+
+.seat-top-1 {
+    height: 15px;
+    width: 30px;
+}
+
+.seat-bottom-1 {
+    height: 15px;
+    width: 30px;
+    border-bottom: 5px solid red;
+    border-left: 5px solid red;
+    border-right: 5px solid red;
+}
+
+.default-button-center {
+    width: 100%;
+}
+
+/*Seat colors*/
+.socially-distanced {
+    color: #37B880;
+}
+
+.blocked  {
+    color: #E52528;
+}
+
+.reserved  {
+    color: #FF8C00;
+}
+
+.general {
+    color: #DDDDDD;
+}

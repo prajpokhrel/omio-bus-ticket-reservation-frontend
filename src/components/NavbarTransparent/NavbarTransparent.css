@@ -1,0 +1,34 @@
+.logo-transparent-container {
+    padding: 20px 0 20px 0;
+    margin-right: 30px;
+}
+
+.navigation-transparent-top {
+    background-color: transparent !important;
+    margin-bottom: 80px;
+}
+
+.logo-navigation-transparent {
+    width: 100px;
+}
+
+.nav-item {
+    color: #FFFFFF !important;
+    font-size: 14px;
+}
+
+.navigation-transparent-controls span:hover {
+    cursor: pointer;
+}
+
+.navigation-transparent-controls span {
+    color: #FFFFFF;
+    font-size: 14px;
+    /*font-weight: 500;*/
+}
+
+
+.nav-transparent-controllers {
+    margin-right: 30px;
+}
+

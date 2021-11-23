@@ -1,0 +1,143 @@
+.passenger-detail-title {
+    background-color: #132968;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 10px 20px 10px;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.passenger-details {
+    margin-top: 20px;
+}
+
+.register-alert-container {
+    padding: 20px;
+    font-size: 16px;
+    color: #425486;
+    display: flex;
+    flex-direction: column;
+}
+
+.register-alert-btn-container {
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.register-alert-shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    background-color: #FFFFFF;
+}
+
+.register-alert-btn {
+    padding: 8px 8px;
+    width: 60%;
+    background-color: initial;
+    border: 1px solid #A1A9C3;
+    color: #425486;
+    font-weight: 500;
+    border-radius: 8px;
+}
+
+.register-alert-btn:hover {
+    background: rgba(161,169,195,.1);
+}
+
+.selected-outbound-details {
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+}
+
+.selected-out-title {
+    font-size: 14px;
+    color: #5E90CC;
+    font-weight: 500;
+}
+
+.journey-time {
+    color: #717FA4;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.journey-date-time {
+    font-weight: bold;
+    color: #132968;
+}
+
+.journey-destination {
+    font-size: 14px;
+    color: #425486;
+    font-weight: 500;
+}
+
+.bus-logo-passenger {
+    max-width: 80px;
+}
+
+.small-text-ticket {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.total-text {
+    font-size: 18px;
+    color: #132968;
+}
+
+.total-price-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #132968;
+}
+
+.tickets-details {
+    color: #425486;
+    font-weight: 500;
+}
+
+.outbound-ticket-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fare-terms-title  {
+    color: #132968;
+    font-weight: 500;
+}
+
+.fare-terms-details {
+    color: #425486;
+    font-weight: 500;
+}
+
+.passenger-form-header {
+    padding: 20px 0 20px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-passenger-container {
+    padding: 15px;
+}
+
+.passenger-form-title {
+    font-weight: 700;
+    font-size: 20px;
+    color: #132968;
+}
+
+.passenger-age-text {
+    color: #A1A9C3;
+    font-weight: 700;
+    font-size: 14px;
+}

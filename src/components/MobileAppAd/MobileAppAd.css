@@ -1,0 +1,35 @@
+.mobile-app-ad {
+    background-color: #FFFFFF;
+}
+
+.feature-card-box {
+    display: flex;
+    padding: 20px 0 20px 0;
+}
+
+.ad-contents-container {
+    padding: 0 20px 20px 30px;
+    color: #425486;
+}
+
+.mobile-ad-title {
+    color: #132968;
+}
+
+.feature-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobile-app-image {
+    display: block;
+    margin: auto;
+}
+
+.feature-contents {
+    padding: 0 20px 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}

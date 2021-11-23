@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import React from "react";
 import './App.css';
+import { Routes, Route, Link } from "react-router-dom";
+import LandingPage from "./containers/LandingPage/LandingPage";
+import JourneyPlanner from "./components/JourneyPlanner/JourneyPlanner";
+import SeatReservation from "./components/SeatReservation/SeatReservation";
+import PassengerDetail from "./components/PassengerDetail/PassengerDetail";
+import BookingRetrieve from "./components/BookingRetrieve/BookingRetrieve";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/journey-planner" element={<JourneyPlanner />} />
+            <Route path="/seat-reservation" element={<SeatReservation />} />
+            <Route path="/passenger-details" element={<PassengerDetail />} />
+            <Route path="/booking-retrieve" element={<BookingRetrieve />} />
+        </Routes>
+        // <LandingPage />
+        // <JourneyPlanner />
+        // <SeatReservation />
+        // <PassengerDetail />
+        // <BookingRetrieve />
+    );
 }
 
 export default App;

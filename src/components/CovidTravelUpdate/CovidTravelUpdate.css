@@ -1,0 +1,17 @@
+.covid-travel-update {
+    padding: 20px 0 20px 0;
+}
+
+.update-container {
+    padding: 12px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #dcdfe9;
+    color: #425486;
+    font-size: 16px;
+}
+
+.update-container a {
+    color: #425486;
+    text-decoration: underline;
+}

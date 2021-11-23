@@ -1,0 +1,27 @@
+.logo-container {
+    padding: 20px 0 20px 0;
+    margin-right: 30px;
+}
+
+.navigation-top {
+    background-color: #FFFFFF !important;
+}
+
+.logo-navigation {
+    width: 100px;
+}
+
+.navigation-controls {
+
+}
+
+.navigation-controls a {
+    color: #132968;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.nav-controllers {
+    margin-right: 30px;
+}
+

@@ -1,0 +1,115 @@
+.outbound-title {
+    color: #132968;
+}
+
+.outbound-destination {
+    color: #132968;
+}
+
+.outbound-info-text {
+    color: #132968;
+}
+
+/*Cards CSS*/
+.result-card-container {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+}
+
+.sorted-title {
+    color: #24C89A;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.bus-logo-image {
+    max-width: 80px;
+}
+
+.bus-timing-title {
+    color: #132968;
+    font-size: 28px;
+}
+
+.bus-timing-title i {
+    color: #FA6B6B;
+    margin: 0 20px 0 20px;
+}
+
+.bus-timing-duration {
+    font-size: 16px;
+    /*color: #666670;*/
+    color: #717FA4;
+    font-weight: 500;
+}
+
+.fare-amount {
+    font-size: 28px;
+    color: #132968;
+    font-weight: 700;
+}
+
+.traveller-count {
+    font-size: 16px;
+    /*color: #666670;*/
+    color: #717FA4;
+    font-weight: 500;
+}
+
+.fare-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.basket-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.additional-text {
+    color: #132968;
+    font-size: 14px;
+}
+
+.journey-details {
+    font-size: 14px;
+    font-weight: bold;
+    color: #425486;
+}
+
+/*RESULTS CONTROL*/
+.sorted-control {
+    display: flex;
+    flex-direction: column;
+}
+
+.sorted-by-title {
+    color: #425486;
+    font-weight: 500;
+}
+
+.sorted-with {
+    font-size: 14px;
+    font-weight: bold;
+    color: #132968;
+}
+
+.results-count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #425486;
+}
+
+.filter-control {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
