@@ -4,41 +4,55 @@ import steeringWheel from "../../assets/steering-wheel.svg";
 import Seat from "./Seat/Seat";
 import NavbarOne from "../NavbarOne/NavbarOne";
 import "../FormElements/FormElements.css";
+import axios from "../../axios-omio-frontend";
+import "./Seat/Seat.css";
 
 // They will go on utils function
-const getInitialSeatPlan = () => {
-    const seats = [];
+// const getInitialSeatPlan = () => {
+//     const seats = [];
+//
+//     // [[{}, {}, {}, {}], [{}, {}, {}, {}], [{}, {}, {}, {}]]
+//
+//     for (let row = 0; row < 10; row++) {
+//         const currentRow = [];
+//         for (let col = 0; col < 5; col++) {
+//             currentRow.push(createSeat(col, row));
+//         }
+//         seats.push(currentRow);
+//     }
+//     return seats;
+// }
 
-    // [[{}, {}, {}, {}], [{}, {}, {}, {}], [{}, {}, {}, {}]]
-
-    for (let row = 0; row < 10; row++) {
-        const currentRow = [];
-        for (let col = 0; col < 4; col++) {
-            currentRow.push(createSeat(col, row));
-        }
-        seats.push(currentRow);
-    }
-    return seats;
-}
-
-const createSeat = (col, row) => {
-    return {
-        col,
-        row,
-        //isBooked
-        //isReserved
-        //isAvailable
-        //isNotAvailable
-    };
-};
+// const createSeat = (col, row) => {
+//     return {
+//         col,
+//         row,
+//         //isBooked
+//         //isReserved
+//         //isAvailable
+//         //isNotAvailable
+//     };
+// };
 
 const SeatReservation = () => {
 
     const [seats, setSeats] = useState([]);
 
+
     useEffect(() => {
-        const seats = getInitialSeatPlan();
-        setSeats(seats);
+        // const seats = getInitialSeatPlan();
+        // setSeats(seats);
+        const getBusSeatPlan = () => {
+            axios.get('/seats/bus-map/2')
+                .then((response) => {
+                    setSeats(response.data.seatData);
+                    // console.log(response.data.seatData);
+                }).catch((error) => {
+                    console.log(error.response);
+            });
+        }
+
+        getBusSeatPlan();
     }, []);
 
     const handleMouseClicked = (row, col) => {
@@ -87,11 +101,18 @@ const SeatReservation = () => {
                                                 <div key={rowIdx}>
                                                     {
                                                         row.map((node, nodeIdx) => {
-                                                            const {row, col} = node;
+                                                            const {row, col, seatSpecificPrice, isBlockedSeat, isSeat, isBookedSeat, isSociallyDistancedSeat, isReservedSeat, isGeneralSeat} = node;
                                                             return (
                                                                 <Seat key={nodeIdx}
                                                                       col={col}
                                                                       row={row}
+                                                                      seatSpecificPrice={seatSpecificPrice}
+                                                                      notASeat={isSeat}
+                                                                      sociallyDistancedSeat={isSociallyDistancedSeat}
+                                                                      blockedSeat={isBlockedSeat}
+                                                                      bookedSeat={isBookedSeat}
+                                                                      reservedSeat={isReservedSeat}
+                                                                      generalSeat={isGeneralSeat}
                                                                       handleMouseClicked={() => handleMouseClicked(row, col)}
                                                                 />
                                                             );
@@ -133,9 +154,9 @@ const SeatReservation = () => {
                                 <div className="p-2 col-12 col-sm-12 col-md-12 col-lg-8 m-auto seat-booking-label">
                                     <div className="row p-1">
                                         <div className="col-2 seat-label-center">
-                                            <div className="seat-label-container">
+                                            <div className="seat-label-container sd-outline">
                                                 <div className="seat-top-1"></div>
-                                                <div className="seat-bottom-1"></div>
+                                                <div className="seat-bottom-1 socially-distanced-1"></div>
                                             </div>
                                         </div>
                                         <div className="col-10 seat-label-text">
@@ -144,9 +165,9 @@ const SeatReservation = () => {
                                     </div>
                                     <div className="row p-1">
                                         <div className="col-2 seat-label-center">
-                                            <div className="seat-label-container">
+                                            <div className="seat-label-container b-outline">
                                                 <div className="seat-top-1"></div>
-                                                <div className="seat-bottom-1"></div>
+                                                <div className="seat-bottom-1 blocked-1"></div>
                                             </div>
                                         </div>
                                         <div className="col-10 seat-label-text">
@@ -155,9 +176,9 @@ const SeatReservation = () => {
                                     </div>
                                     <div className="row p-1">
                                         <div className="col-2 seat-label-center">
-                                            <div className="seat-label-container">
+                                            <div className="seat-label-container r-outline">
                                                 <div className="seat-top-1"></div>
-                                                <div className="seat-bottom-1"></div>
+                                                <div className="seat-bottom-1 reserved-1"></div>
                                             </div>
                                         </div>
                                         <div className="col-10 seat-label-text">
@@ -166,9 +187,9 @@ const SeatReservation = () => {
                                     </div>
                                     <div className="row p-1">
                                         <div className="col-2 seat-label-center">
-                                            <div className="seat-label-container">
+                                            <div className="seat-label-container g-outline">
                                                 <div className="seat-top-1"></div>
-                                                <div className="seat-bottom-1"></div>
+                                                <div className="seat-bottom-1 general-1"></div>
                                             </div>
                                         </div>
                                         <div className="col-10 seat-label-text">

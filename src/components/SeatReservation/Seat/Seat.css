@@ -1,30 +1,7 @@
-/*.seat-border {*/
-/*    height: 25px;*/
-/*    width: 50px;*/
-/*    border-bottom: 8px solid red;*/
-/*    border-left: 8px solid red;*/
-/*    border-right: 8px solid red;*/
-/*}*/
-
-/*.seat-top {*/
-/*    height: 25px;*/
-/*    width: 50px;*/
-/*    border: 1px solid red;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    color: red;*/
-/*}*/
-
-/*.inside-seat {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*}*/
-
 .node {
     width: 50px;
     height: 50px;
-    outline: 1px solid black;
+    /*outline: 1px solid black;*/
     float: left;
     display: flex;
     justify-content: center;
@@ -35,7 +12,7 @@
 .bus-seat {
     width: 50px;
     height: 50px;
-    outline: 1px solid black;
+    /*outline: 1px solid black;*/
     background-color: #FFFFFF;
     float: left;
 }
@@ -43,17 +20,9 @@
 .seat-top {
     width: 50px;
     height: 25px;
-    color: red;
-    border: 1px solid red;
+    /*color: red;*/
+    /*border: 1px solid red;*/
     font-weight: 500;
-}
-
-.seat-bottom {
-    width: 50px;
-    height: 25px;
-    border-bottom: 8px solid red;
-    border-left: 8px solid red;
-    border-right: 8px solid red;
 }
 
 .passage-gap {
@@ -61,6 +30,99 @@
 }
 
 .seat-gap {
-    margin-right: 5px;
+    margin-right: 6px;
     margin-bottom: 20px;
+}
+
+/*seats color*/
+.seat-bottom {
+    width: 50px;
+    height: 25px;
+    /*border-bottom: 8px solid red;*/
+    /*border-left: 8px solid red;*/
+    /*border-right: 8px solid red;*/
+}
+
+.not-a-seat {
+    background-color: transparent;
+    border: transparent;
+    outline: transparent;
+}
+
+.socially-distanced {
+    /*background-color: #37B880;*/
+    border-bottom: 8px solid #37B880;
+    border-left: 8px solid #37B880;
+    border-right: 8px solid #37B880;
+}
+
+.socially-distanced-1 {
+    /*background-color: #37B880;*/
+    border-bottom: 5px solid #37B880;
+    border-left: 5px solid #37B880;
+    border-right: 5px solid #37B880;
+}
+
+.sd-outline {
+    outline: 1px solid #37B880;
+}
+
+.blocked  {
+    /*background-color: #E52528;*/
+    border-bottom: 8px solid #E52528;
+    border-left: 8px solid #E52528;
+    border-right: 8px solid #E52528;
+}
+
+.blocked-1  {
+    /*background-color: #E52528;*/
+    border-bottom: 5px solid #E52528;
+    border-left: 5px solid #E52528;
+    border-right: 5px solid #E52528;
+}
+
+.b-outline {
+    outline: 1px solid #E52528;
+}
+
+.reserved  {
+    /*background-color: #FF8C00;*/
+    border-bottom: 8px solid #FF8C00;
+    border-left: 8px solid #FF8C00;
+    border-right: 8px solid #FF8C00;
+}
+
+.reserved-1 {
+    border-bottom: 5px solid #FF8C00;
+    border-left: 5px solid #FF8C00;
+    border-right: 5px solid #FF8C00;
+}
+
+.r-outline {
+    outline: 1px solid #FF8C00;
+}
+
+.general {
+    /*background-color: #DDDDDD;*/
+    border-bottom: 8px solid #717FA4;
+    border-left: 8px solid #717FA4;
+    border-right: 8px solid #717FA4;
+}
+
+.general-1 {
+    border-bottom: 5px solid #717FA4;
+    border-left: 5px solid #717FA4;
+    border-right: 5px solid #717FA4;
+}
+
+.g-outline {
+    outline: 1px solid #717FA4;
+}
+
+.sd-seat-price {
+    color: #37B880;
+}
+
+.r-seat-price {
+    color: #FF8C00;
 }

@@ -54,7 +54,7 @@
     align-items: center;
     background-color: #DDDDDD;
     border: 1px solid #C4C4C4;
-    margin-left: 155px;
+    margin-left: 170px;
     color: #425486;
 }
 
@@ -75,10 +75,11 @@
 }
 
 .bus-map {
-    max-width: 290px;
+    max-width: 300px;
     padding: 10px;
     height: auto;
     background-color: #DDDDDD;
+    /*background-color: #EAEAEA;*/
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -159,7 +160,7 @@
 .seat-label-container {
     width: 30px;
     height: 30px;
-    outline: 1px solid black;
+    /*outline: 1px solid black;*/
     /*display: flex;*/
     /*justify-content: center;*/
     /*align-self: center;*/
@@ -175,9 +176,9 @@
 .seat-bottom-1 {
     height: 15px;
     width: 30px;
-    border-bottom: 5px solid red;
-    border-left: 5px solid red;
-    border-right: 5px solid red;
+    /*border-bottom: 5px solid red;*/
+    /*border-left: 5px solid red;*/
+    /*border-right: 5px solid red;*/
 }
 
 .default-button-center {

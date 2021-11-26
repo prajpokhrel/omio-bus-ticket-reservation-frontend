@@ -27,6 +27,16 @@
     /*font-weight: 500;*/
 }
 
+.nav-transparent-link {
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+.nav-transparent-link:hover {
+    cursor: pointer;
+    color: #FFFFFF;
+}
+
 
 .nav-transparent-controllers {
     margin-right: 30px;

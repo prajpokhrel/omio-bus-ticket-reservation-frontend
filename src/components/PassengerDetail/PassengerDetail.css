@@ -48,6 +48,14 @@
     background: rgba(161,169,195,.1);
 }
 
+.register-alert-btn-link {
+    color: #425486;
+}
+
+.register-alert-btn-link:hover {
+    color: #425486;
+}
+
 .selected-outbound-details {
     padding: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);

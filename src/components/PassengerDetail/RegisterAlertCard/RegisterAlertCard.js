@@ -1,5 +1,6 @@
 import React from "react";
 import "../PassengerDetail.css";
+import {Link} from "react-router-dom";
 
 const RegisterAlertCard = () => {
     return (
@@ -9,7 +10,9 @@ const RegisterAlertCard = () => {
                 <span>Create an account to reserve your tickets.</span>
             </div>
             <div className="col-12 col-sm-4 register-alert-btn-container">
-                <button className="register-alert-btn">Sign up</button>
+                <button className="register-alert-btn">
+                    <Link className="register-alert-btn-link" to='/register'>Sign up</Link>
+                </button>
             </div>
         </div>
     );

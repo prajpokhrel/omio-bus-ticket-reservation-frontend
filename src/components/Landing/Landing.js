@@ -3,22 +3,21 @@ import "./Landing.css";
 import "../FormElements/FormElements.css";
 import NavbarTransparent from "../NavbarTransparent/NavbarTransparent";
 import CommonModal from "../Modal/CommonModal";
-import CovidTravelUpdate from "../CovidTravelUpdate/CovidTravelUpdate";
-import InfoCards from "../InfoCards/InfoCards";
-import MobileAppAd from "../MobileAppAd/MobileAppAd";
-import PopularConnections from "../PopularConnections/PopularConnections";
-import Footer from "../Footer/Footer";
 import axios from "../../axios-omio-frontend";
 import Select from "react-select";
+import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
-
     const [passengerCount, setPassengerCount] = useState(1);
-    const [modalShow, setModalShow] = useState(false);
     const [sources, setSources] = useState([]);
     const [destinations, setDestinations] = useState([]);
     const [sourceSelectedOption, setSourceSelectedOption] = useState(null);
     const [destinationSelectedOption, setDestinationSelectedOption] = useState(null);
+    const [departureDate, setDepartureDate] = useState(new Date(Date.now() + 86400000));
+    const tomorrow = new Date(Date.now() + (24 * 60 * 60 * 1000)).toISOString().substring(0, 10);
+    const twoMonths = new Date(Date.now() + (50 * 24 * 60 * 60 * 1000)).toISOString().substring(0, 10);
+    const navigate = useNavigate();
 
     const colourStyles = {
         control: styles => ({
@@ -60,7 +59,6 @@ const Landing = () => {
     }
 
     const getAvailableDestinations = () => {
-        setDestinationSelectedOption(null);
         axios.get(`/places/source/${sourceSelectedOption}`).then((response) => {
             setDestinations(arrangeDestination(response.data));
         }).catch((error) => {
@@ -76,6 +74,16 @@ const Landing = () => {
         setDestinationSelectedOption(event.value);
     }
 
+    const handleDateSelectChange = (event) => {
+        setDepartureDate(event.target.value);
+    }
+
+    const handleSearchFormSubmit = (event) => {
+        event.preventDefault();
+        navigate(`journey-planner/${sourceSelectedOption}/${destinationSelectedOption}/${passengerCount}/${departureDate}`);
+        // console.log(sourceSelectedOption, destinationSelectedOption, departureDate, passengerCount);
+    }
+
     const handleIncrement = (event) => {
         event.preventDefault();
         setPassengerCount(passengerCount + 1)
@@ -86,18 +94,11 @@ const Landing = () => {
         setPassengerCount(passengerCount - 1);
     }
 
-    const handleModalToggle = () => {
-        setModalShow(!modalShow);
-    }
-
     return (
         <>
-            {/*<button onClick={handleModalToggle}>Show Modal</button>*/}
-            <CommonModal showModal={modalShow} toggleModal={handleModalToggle}/>
-
             <section className="landing-page">
                 <div className="banner-container">
-                    <NavbarTransparent loginRegisterModalHandler={handleModalToggle}/>
+                    <NavbarTransparent />
                     <div className="container">
                         <div className="row">
                             <div className="col-12 landing-container">
@@ -113,7 +114,7 @@ const Landing = () => {
                 <div className="container">
                     <div className="row p-3">
                         <div className="col-12 col-sm-12 col-md-12 m-auto search-destination-container">
-                            <form className="row g-3">
+                            <form onSubmit={handleSearchFormSubmit} className="row g-3">
                                 {/*<div className="col-lg-4">*/}
                                 {/*    <label htmlFor="from" className="form-label custom-labels">From</label>*/}
                                 {/*    <input name="fromPlace" type="text" className="form-control custom-inputs" id="from" placeholder="From: City, Station, Or Airport"/>*/}
@@ -130,7 +131,7 @@ const Landing = () => {
                                 </div>
                                 <div className="col-lg-4">
                                     <label htmlFor="departureDate" className="form-label custom-labels">Departure Date</label>
-                                    <input name="departureDate" type="date" className="form-control custom-inputs" id="departureDate" />
+                                    <input name="departureDate" onChange={handleDateSelectChange} type="date" min={tomorrow} max={twoMonths} className="form-control custom-inputs" id="departureDate" />
                                 </div>
                                 <div className="col-lg-8 passenger-count">
                                     <button className="increment-decrement-btn" onClick={handleDecrement}
@@ -145,25 +146,13 @@ const Landing = () => {
                                     {/*<span className="passenger-counter-label">{passengerCount} passenger(s)</span>*/}
                                 </div>
                                 <div className="col-lg-4 default-btn-center">
-                                    <button className="default-button">Search</button>
+                                    <button type="submit" className="default-button">Search</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </section>
-
-            {/*  Covid Travel Update  */}
-            <CovidTravelUpdate />
-            {/*  Info Cards  */}
-            <InfoCards />
-            {/* Mobile Application Ads   */}
-            <MobileAppAd />
-            {/* Popular Connections   */}
-            <PopularConnections />
-            {/* Footer   */}
-            <Footer />
-
         </>
     );
 }

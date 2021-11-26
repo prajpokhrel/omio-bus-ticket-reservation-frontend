@@ -3,23 +3,21 @@ import "./CommonModal.css";
 import Modal from 'react-bootstrap/Modal'
 import logoImage from "../../assets/logo-dark.svg";
 import busImage from "../../assets/bus.svg";
-import LoginContainer from "../AuthForms/LoginContainer";
-import RegisterContainer from "../AuthForms/RegisterContainer";
-import ForgotPasswordContainer from "../AuthForms/ForgotPasswordContainer";
 
 const CommonModal = (props) => {
+    const [modalShow, setModalShow] = useState(true);
+
+    const handleModalToggle = () => {
+        setModalShow(!modalShow);
+    }
 
     return (
         <>
-            {/*<button onClick={handleShow}>*/}
-            {/*    Launch demo modal*/}
-            {/*</button>*/}
-
             <Modal {...props}
                    aria-labelledby="contained-modal-title-vcenter"
                    show={props.showModal}
                    size="lg"
-                   onHide={props.toggleModal}
+                   onHide={handleModalToggle}
                    centered>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
@@ -32,10 +30,7 @@ const CommonModal = (props) => {
                             <img className="img-fluid modal-image" src={busImage} alt="bus-image"/>
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
-                            {/*  Toggle between register and login  */}
-                            <LoginContainer />
-                            {/*<RegisterContainer />*/}
-                            {/*<ForgotPasswordContainer />*/}
+
                         </div>
                     </div>
                 </Modal.Body>

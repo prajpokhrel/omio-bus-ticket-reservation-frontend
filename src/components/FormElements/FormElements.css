@@ -21,6 +21,15 @@
     width: 100%;
 }
 
+.btn-link {
+    text-decoration: none;
+    color: #425486;
+}
+
+.btn-link:hover {
+    color: #425486;
+}
+
 .styled-btn {
     padding: 10px 25px;
     background-color: initial;
@@ -32,6 +41,7 @@
 
 .styled-btn:hover {
     background: rgba(161,169,195,.1);
+    color: #425486 !important;
 }
 
 .form-background {
@@ -162,6 +172,7 @@
 .forgot-password-text:hover {
     text-decoration: underline;
     cursor: pointer;
+    color: #FA6B6B;
 }
 
 .register-status-text {
@@ -170,13 +181,15 @@
 }
 
 .register-status-action {
-    color: #FA6B6B;
+    color: #FA6B6B !important;
     font-weight: 500;
+    text-decoration: none;
 }
 
 .register-status-action:hover {
     text-decoration: underline;
     cursor: pointer;
+    color: #FA6B6B !important;
 }
 
 .privacy-policy {
