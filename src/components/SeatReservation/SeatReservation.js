@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import "./SeatReservation.css";
 import steeringWheel from "../../assets/steering-wheel.svg";
 import Seat from "./Seat/Seat";
@@ -6,58 +6,79 @@ import NavbarOne from "../NavbarOne/NavbarOne";
 import "../FormElements/FormElements.css";
 import axios from "../../axios-omio-frontend";
 import "./Seat/Seat.css";
-
-// They will go on utils function
-// const getInitialSeatPlan = () => {
-//     const seats = [];
-//
-//     // [[{}, {}, {}, {}], [{}, {}, {}, {}], [{}, {}, {}, {}]]
-//
-//     for (let row = 0; row < 10; row++) {
-//         const currentRow = [];
-//         for (let col = 0; col < 5; col++) {
-//             currentRow.push(createSeat(col, row));
-//         }
-//         seats.push(currentRow);
-//     }
-//     return seats;
-// }
-
-// const createSeat = (col, row) => {
-//     return {
-//         col,
-//         row,
-//         //isBooked
-//         //isReserved
-//         //isAvailable
-//         //isNotAvailable
-//     };
-// };
+import {useParams, useNavigate} from "react-router-dom";
+import moment from "moment";
 
 const SeatReservation = () => {
 
+    const [journeyDetails, setJourneyDetails] = useState({});
     const [seats, setSeats] = useState([]);
+    const [selectedSeats, setSelectedSeats] = useState([]);
 
+    const params = useParams();
+    const navigate = useNavigate();
+    const {journeyId, travelers} = params;
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     useEffect(() => {
         // const seats = getInitialSeatPlan();
         // setSeats(seats);
         const getBusSeatPlan = () => {
-            axios.get('/seats/bus-map/2')
+            axios.get(`/destinations/journey-details/${journeyId}`)
                 .then((response) => {
-                    setSeats(response.data.seatData);
-                    // console.log(response.data.seatData);
+                    setJourneyDetails(response.data.journeyDetails);
+                    setSeats(response.data.specificJourneySeats);
+                    console.log(response.data);
                 }).catch((error) => {
                     console.log(error.response);
             });
         }
 
         getBusSeatPlan();
+        localStorage.removeItem('selectedSeats');
     }, []);
 
-    const handleMouseClicked = (row, col) => {
-        const columnsLabel = ['A', 'B'];
-        console.log(row, col);
+    const handleSeatsClicked = (row, col) => {
+        const newSeatPlan = getNewSeatPlan(seats, row, col);
+        setSeats(newSeatPlan);
+    }
+
+    const handlePassengerDetailsBtnClicked = () => {
+        localStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
+        navigate(`/passenger-details/${journeyDetails.id}/${travelers}`);
+    }
+
+    const updateSeats = (seat) => {
+        const newSelectedSeat = selectedSeats.slice();
+        const index = newSelectedSeat.findIndex((item) => item.id === seat.id);
+        if (index !== -1) {
+            console.log("Seat exists");
+            newSelectedSeat.splice(index, 1);
+        } else {
+            console.log("Items doesnot exists");
+            newSelectedSeat.push(seat);
+        }
+        setSelectedSeats(newSelectedSeat);
+    }
+
+    const getNewSeatPlan = (seats, row, col) => {
+        const newSeats = seats.slice();
+        const seat = newSeats[row][col];
+
+        const newSeat = {
+            ...seat,
+            isSelected: !seat.isSelected
+        }
+        newSeats[row][col] =  newSeat;
+        updateSeats(newSeat);
+        return newSeats;
+    }
+
+    const formatDate = (date, time) => {
+        return moment(`${date} ${time}`, 'YYYY-MM-DD HH:mm:ss').format('LLLL');
     }
 
     return (
@@ -70,16 +91,17 @@ const SeatReservation = () => {
 
             <section className="reservation-details">
                 <div>
-                    <h3 className="reserve-title">Reserve seat for 2 passengers</h3>
+                    <h3 className="reserve-title">Reserve seat for {travelers} passengers</h3>
                 </div>
                 <div className="reserve-dest-container">
-                    <span className="reserve-destination"><b>Toronto, ON </b></span>
+                    <span className="reserve-destination"><b>{journeyDetails.fromSource} </b></span>
                     to
-                    <span className="reserve-destination"><b> London, ON</b></span><br/>
+                    <span className="reserve-destination"><b> {journeyDetails.toDestination}</b></span><br/>
                 </div>
                 <div className="reserve-date-time text-center">
-                    <span className="departure-detail"><b>Departure: </b> Mon Nov 8th, 2021 4:30pm</span><br/>
-                    <span className="departure-detail"><b>Arrival: </b> Mon Nov 8th, 2021 7:20pm</span>
+                    <span className="departure-detail"><b>Departure: </b> {formatDate(journeyDetails.departureDate, journeyDetails.departureTime)}</span><br/>
+                    {/*<span className="departure-detail"><b>Departure: </b> Mon Nov 8th, 2021 4:30pm</span><br/>*/}
+                    <span className="departure-detail"><b>Arrival: </b> {formatDate(journeyDetails.arrivalDate, journeyDetails.estimatedArrivalTime)}</span>
                 </div>
             </section>
 
@@ -101,7 +123,7 @@ const SeatReservation = () => {
                                                 <div key={rowIdx}>
                                                     {
                                                         row.map((node, nodeIdx) => {
-                                                            const {row, col, seatSpecificPrice, isBlockedSeat, isSeat, isBookedSeat, isSociallyDistancedSeat, isReservedSeat, isGeneralSeat} = node;
+                                                            const {row, col, isSelected, seatSpecificPrice, isBlockedSeat, isSeat, isBookedSeat, isSociallyDistancedSeat, isReservedSeat, isGeneralSeat} = node;
                                                             return (
                                                                 <Seat key={nodeIdx}
                                                                       col={col}
@@ -113,7 +135,8 @@ const SeatReservation = () => {
                                                                       bookedSeat={isBookedSeat}
                                                                       reservedSeat={isReservedSeat}
                                                                       generalSeat={isGeneralSeat}
-                                                                      handleMouseClicked={() => handleMouseClicked(row, col)}
+                                                                      selectedSeat = {isSelected}
+                                                                      handleMouseClicked={() => handleSeatsClicked(row, col)}
                                                                 />
                                                             );
                                                         })
@@ -134,19 +157,34 @@ const SeatReservation = () => {
                             <div className="row">
                                 <div className="col-12 col-sm-12 col-md-12 col-lg-8 m-auto seat-selection-div">
                                     <span>General Seating</span><br/>
-                                    <h5>A12, B21, C22</h5>
+                                    {/*<h5>A12, B21, C22</h5>*/}
+                                    {
+                                        selectedSeats.length !== 0 ?
+                                        selectedSeats.map((seat) => {
+                                            return (
+                                                <><span className="seat-numbers"><small>Selected Seat: {seat.row}{seat.col}, +${seat.seatSpecificPrice} to route fare.</small></span><br/></>
+                                            );
+                                        }) : <span className="seat-number-info">No seats selected.</span>
+                                    }
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-12 col-sm-12 col-md-12 col-lg-8 m-auto seat-price-div">
                                     <span>Reserved seat price</span>
-                                    <h3 className="reserve-seat-price">US$33.22</h3>
+                                    {/*<h3 className="reserve-seat-price">US${journeyDetails.routeFare * travelers}</h3>*/}
+                                    <h3 className="reserve-seat-price">
+                                        US$ {selectedSeats.reduce(((previousValue, currentValue) => {
+                                            if (currentValue.seatSpecificPrice !== '') {
+                                                return parseInt(currentValue.seatSpecificPrice) + parseInt(previousValue);
+                                            }
+                                        }), 0)}
+                                    </h3>
                                     <hr/>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-12 col-sm-12 col-md-12 col-lg-8 m-auto seat-booking-div">
-                                    <button className="default-button default-button-center">Go To Passenger Details</button>
+                                    <button onClick={handlePassengerDetailsBtnClicked} className="default-button default-button-center">Go To Passenger Details</button>
                                 </div>
                             </div>
 
@@ -200,7 +238,7 @@ const SeatReservation = () => {
                             </div>
 
                             <div className="row mt-1 text-center seat-info-text p-3">
-                                <b>All transactions will incur a $4.41 booking fee</b>
+                                <b>All transactions will incur a 14% booking fee.</b>
                             </div>
 
                         </div>

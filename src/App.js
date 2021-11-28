@@ -20,8 +20,8 @@ function App() {
             <Route path="/login" element={<LoginContainer />} />
             <Route path="/forgot-password" element={<ForgotPasswordContainer />} />
             <Route path="/journey-planner/:fromSource/:toDestination/:travelers/:departureDate" element={<JourneyPlanner />} />
-            <Route path="/seat-reservation" element={<SeatReservation />} />
-            <Route path="/passenger-details" element={<PassengerDetail />} />
+            <Route path="/seat-reservation/:journeyId/:travelers" element={<SeatReservation />} />
+            <Route path="/passenger-details/:journeyId/:travelers" element={<PassengerDetail />} />
             <Route path="/booking-retrieve" element={<BookingRetrieve />} />
         </Routes>
     );

@@ -24,6 +24,14 @@
     color: #132968;
 }
 
+.seat-numbers {
+    color: #425486 !important;
+}
+
+.seat-number-info {
+    color: #E52528 !important;
+}
+
 .reserve-dest-container {
     color: #A1A9C3;
 }

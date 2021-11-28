@@ -2,7 +2,7 @@ import React from "react";
 import "../PassengerDetail.css";
 import "../../FormElements/FormElements.css";
 
-const MainPassengerForm = () => {
+const MainPassengerForm = ({onInputChange}) => {
     return (
         <div className="row mb-3 register-alert-shadow">
             <div className="row">
@@ -20,24 +20,24 @@ const MainPassengerForm = () => {
                     <form className="row g-3">
                         <div className="col-12">
                             <label htmlFor="email" className="form-label custom-labels">E-mail</label>
-                            <input name="email" type="email" className="form-control custom-inputs"
+                            <input onChange={onInputChange} name="email0" type="email" className="form-control custom-inputs"
                                    placeholder="We'll send your tickets here" id="email" />
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="first-name" className="form-label custom-labels">First name</label>
-                            <input name="firstName" type="text" className="form-control custom-inputs" id="first-name" />
+                            <input onChange={onInputChange} name="firstName0" type="text" className="form-control custom-inputs" id="first-name" />
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="last-name" className="form-label custom-labels">Last name</label>
-                            <input name="lastName" type="text" className="form-control custom-inputs" id="last-name" />
+                            <input onChange={onInputChange} name="lastName0" type="text" className="form-control custom-inputs" id="last-name" />
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="phone" className="form-label custom-labels">Phone number</label>
-                            <input name="phoneNumber" type="text" className="form-control custom-inputs" id="phone" />
+                            <input onChange={onInputChange} name="phoneNumber0" type="text" className="form-control custom-inputs" id="phone" />
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="id-type" className="form-label custom-labels">ID Type</label>
-                            <select id="id-type" className="form-select custom-selects">
+                            <select onChange={onInputChange} id="id-type" name="idType0" className="form-select custom-selects">
                                 <option>Select your ID Type</option>
                                 <option>National ID</option>
                                 <option>Passport</option>
@@ -45,11 +45,11 @@ const MainPassengerForm = () => {
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="id-detail" className="form-label custom-labels">ID Number</label>
-                            <input type="text" className="form-control custom-inputs" id="id-detail" />
+                            <input onChange={onInputChange} name="idNumber0" type="text" className="form-control custom-inputs" id="id-detail" />
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="country" className="form-label custom-labels">Country/Region of residence</label>
-                            <select id="country" className="form-select custom-selects">
+                            <select onChange={onInputChange} name="country0" id="country" className="form-select custom-selects">
                                 <option>Select your nationality</option>
                                 <option>Nepal</option>
                                 <option>Canada</option>

@@ -4,7 +4,7 @@ import busImage from "../../assets/blablabus.png";
 import "../FormElements/FormElements.css";
 import moment from "moment";
 
-const OutboundJourney = ({routeDetails, source, destination, passengers, departureDate}) => {
+const OutboundJourney = ({routeDetails, handleBookBtnClicked, source, destination, passengers, departureDate}) => {
 
     // const readableDate = moment(departureDate).format("Do MMM, YYYY");
     const formatDate = (date) => {
@@ -81,7 +81,7 @@ const OutboundJourney = ({routeDetails, source, destination, passengers, departu
                                     </div>
                                     <div className="col-12 col-sm-12 order-1 order-sm-1 order-md-2 col-md-4 fare-container">
                                         <span className="fare-amount">US$ {routeDetail.routeFare * passengers}</span>
-                                        <span className="traveller-count">For {passengers} traveller(s)</span>
+                                        <span className="traveller-count">For {passengers} traveler(s)</span>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -89,7 +89,7 @@ const OutboundJourney = ({routeDetails, source, destination, passengers, departu
                                         <img className="img-fluid bus-logo-image" src={busImage} alt="bus logo" />
                                     </div>
                                     <div className="col-12 col-sm-12 col-md-6 p-2 basket-container">
-                                        <button className="default-button">Book a seat(s)</button>
+                                        <button onClick={() => handleBookBtnClicked(routeDetail.id)} className="default-button">Book a seat(s)</button>
                                     </div>
                                 </div>
                                 <div className="row journey-details">

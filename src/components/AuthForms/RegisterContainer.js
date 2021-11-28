@@ -1,11 +1,45 @@
-import React from "react";
+import React, {useState} from "react";
 import "./AuthForms.css";
 import "../FormElements/FormElements.css";
 import NavbarOne from "../NavbarOne/NavbarOne";
 import busImage from "../../assets/no-buses-found.svg";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import axios from "../../axios-omio-frontend";
 
 const RegisterContainer = () => {
+
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: ''
+    });
+    const [showPassword, setShowPassword] = useState(false);
+
+    const navigate = useNavigate();
+
+    const registerHandler = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post('/users/auth/register', formData,
+                {withCredentials: true, credentials: 'include'});
+            console.log(response.data);
+            // navigate to login
+            // maybe with some sweet alert messages
+            navigate('/login');
+        } catch (error) {
+            console.log(error.response.data);
+        }
+    }
+
+    const inputChangedHandler = (event) => {
+        setFormData({...formData, [event.target.name]: event.target.value});
+    }
+
+    const handleCheckboxChecked = () => {
+        setShowPassword(!showPassword);
+    }
+
     return (
         <>
             <NavbarOne />
@@ -20,26 +54,26 @@ const RegisterContainer = () => {
                             <div className="row p-2">
                                 <div className="col-12">
                                     <h3 className="auth-title"><b>Create an account</b></h3>
-                                    <form className="row g-3">
+                                    <form className="row g-3" onSubmit={registerHandler}>
                                         <div className="col-lg-6">
                                             <label htmlFor="first-name" className="form-label custom-labels">First Name</label>
-                                            <input name="firstName" type="text" className="form-control custom-inputs" id="first-name" />
+                                            <input onChange={inputChangedHandler} name="firstName" type="text" className="form-control custom-inputs" id="first-name" />
                                         </div>
                                         <div className="col-lg-6">
                                             <label htmlFor="last-name" className="form-label custom-labels">Last Name</label>
-                                            <input name="lastName" type="text" className="form-control custom-inputs" id="last-name" />
+                                            <input onChange={inputChangedHandler} name="lastName" type="text" className="form-control custom-inputs" id="last-name" />
                                         </div>
                                         <div className="col-12">
                                             <label htmlFor="email" className="form-label custom-labels">You email address</label>
-                                            <input name="email" type="email" className="form-control custom-inputs" id="email" />
+                                            <input onChange={inputChangedHandler} name="email" type="email" className="form-control custom-inputs" id="email" />
                                         </div>
                                         <div className="col-12">
                                             <label htmlFor="password" className="form-label custom-labels">Your password</label>
-                                            <input name="password" type="password" className="form-control custom-inputs" id="password" />
+                                            <input onChange={inputChangedHandler} name="password" type={showPassword ? "text" : "password"} className="form-control custom-inputs" id="password" />
                                         </div>
                                         <div className="col-12">
                                             <div className="form-check">
-                                                <input className="form-check-input custom-inputs-check" type="checkbox" value="" id="show-hide" />
+                                                <input onChange={handleCheckboxChecked} className="form-check-input custom-inputs-check" type="checkbox"  id="show-hide" />
                                                 <label className="form-check-label custom-labels" htmlFor="show-hide">
                                                     Show password
                                                 </label>

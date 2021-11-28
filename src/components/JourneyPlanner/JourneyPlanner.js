@@ -3,7 +3,7 @@ import "./JourneyPlanner.css";
 import NavbarOne from "../NavbarOne/NavbarOne";
 import JourneyPlanEdit from "../JourneyPlanEdit/JourneyPlanEdit";
 import OutboundJourney from "../OutboundJourney/OutboundJourney";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "../../axios-omio-frontend";
 
 // This can be a container
@@ -11,6 +11,7 @@ const JourneyPlanner = () => {
 
     const [destinations, setDestinations] = useState([]);
 
+    const navigate = useNavigate();
     const params = useParams();
     const { fromSource, toDestination, travelers, departureDate } = params;
 
@@ -31,6 +32,11 @@ const JourneyPlanner = () => {
         getAvailableDestinations();
     }, []);
 
+    const handleBookSeatsBtnClicked = (destinationId) => {
+        // console.log(destinationId);
+        navigate(`/seat-reservation/${destinationId}/${travelers}`);
+    }
+
     return (
         <>
             <NavbarOne />
@@ -38,6 +44,7 @@ const JourneyPlanner = () => {
                              destination={toDestination}
                              passengers={travelers} />
             <OutboundJourney source={fromSource}
+                             handleBookBtnClicked={handleBookSeatsBtnClicked}
                              destination={toDestination}
                              passengers={travelers}
                              departureDate={departureDate}

@@ -1,11 +1,46 @@
-import React from "react";
+import React, {useState} from "react";
 import "./AuthForms.css";
 import "../FormElements/FormElements.css";
 import NavbarOne from "../NavbarOne/NavbarOne";
 import busImage from "../../assets/no-buses-found.svg";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import axios from "../../axios-omio-frontend";
 
-const LoginContainer = ({showRegister, showForgot}) => {
+const LoginContainer = () => {
+
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
+    });
+
+    const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
+
+    const loginHandler = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await axios.post('/users/auth/login', formData, {
+                withCredentials: true, credentials: 'include'
+            });
+            if (response) {
+                console.log(response.data);
+                // navigate('/');
+            }
+        } catch (error) {
+            console.log(error.response.data);
+        }
+
+    };
+
+    const inputChangedHandler = (event) => {
+        setFormData({...formData, [event.target.name]: event.target.value});
+    };
+
+    const handleCheckboxChecked = () => {
+        setShowPassword(!showPassword);
+    }
+
     return (
         <>
             <NavbarOne />
@@ -20,18 +55,18 @@ const LoginContainer = ({showRegister, showForgot}) => {
                             <div className="row p-2">
                                 <div className="col-12">
                                     <h3 className="auth-title"><b>Sign in</b></h3>
-                                    <form className="row g-3">
+                                    <form className="row g-3" onSubmit={loginHandler}>
                                         <div className="col-12">
                                             <label htmlFor="email" className="form-label custom-labels">You email address</label>
-                                            <input name="email" type="email" className="form-control custom-inputs" id="email" />
+                                            <input onChange={inputChangedHandler} name="email" type="email" className="form-control custom-inputs" id="email" />
                                         </div>
                                         <div className="col-12">
                                             <label htmlFor="password" className="form-label custom-labels">Your password</label>
-                                            <input name="password" type="password" className="form-control custom-inputs" id="password" />
+                                            <input onChange={inputChangedHandler} name="password" type={showPassword ? 'text' : 'password'} className="form-control custom-inputs" id="password" />
                                         </div>
                                         <div className="col-12">
                                             <div className="form-check">
-                                                <input className="form-check-input custom-inputs-check" type="checkbox" value="" id="show-hide" />
+                                                <input onChange={handleCheckboxChecked} className="form-check-input custom-inputs-check" type="checkbox" value="" id="show-hide" />
                                                 <label className="form-check-label custom-labels" htmlFor="show-hide">
                                                     Show password
                                                 </label>
