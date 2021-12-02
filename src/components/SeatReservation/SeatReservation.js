@@ -175,9 +175,9 @@ const SeatReservation = () => {
                                     <h3 className="reserve-seat-price">
                                         US$ {selectedSeats.reduce(((previousValue, currentValue) => {
                                             if (currentValue.seatSpecificPrice !== '') {
-                                                return parseInt(currentValue.seatSpecificPrice) + parseInt(previousValue);
+                                                return parseFloat(currentValue.seatSpecificPrice) + parseFloat(previousValue);
                                             }
-                                        }), 0)}
+                                        }), 0).toFixed(2)}
                                     </h3>
                                     <hr/>
                                 </div>

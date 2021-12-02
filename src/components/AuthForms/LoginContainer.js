@@ -3,8 +3,9 @@ import "./AuthForms.css";
 import "../FormElements/FormElements.css";
 import NavbarOne from "../NavbarOne/NavbarOne";
 import busImage from "../../assets/no-buses-found.svg";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, useLocation} from "react-router-dom";
 import axios from "../../axios-omio-frontend";
+import useAuth from '../../hooks/useAuth';
 
 const LoginContainer = () => {
 
@@ -15,6 +16,7 @@ const LoginContainer = () => {
 
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
+    const {login} = useAuth();
 
     const loginHandler = async (event) => {
         event.preventDefault();
@@ -23,10 +25,14 @@ const LoginContainer = () => {
             const response = await axios.post('/users/auth/login', formData, {
                 withCredentials: true, credentials: 'include'
             });
-            if (response) {
-                console.log(response.data);
-                // navigate('/');
+            if (response.status === 200) {
+                login().then(() => {
+                    navigate('/');
+                }).catch((error) => {
+                    console.log(error);
+                });
             }
+
         } catch (error) {
             console.log(error.response.data);
         }

@@ -6,6 +6,10 @@
     color: #132968;
 }
 
+.check-email-box {
+    padding-top: 80px;
+}
+
 .auth-form-container {
     margin-top: 20px;
     border-radius: 8px;

@@ -2,10 +2,8 @@ import React, {useEffect, useState} from "react";
 import "./Landing.css";
 import "../FormElements/FormElements.css";
 import NavbarTransparent from "../NavbarTransparent/NavbarTransparent";
-import CommonModal from "../Modal/CommonModal";
 import axios from "../../axios-omio-frontend";
 import Select from "react-select";
-import moment from "moment";
 import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
@@ -28,6 +26,10 @@ const Landing = () => {
             border: 'none',
         })
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     useEffect(() => {
         getAllSources();

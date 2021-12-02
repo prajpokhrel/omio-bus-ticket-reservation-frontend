@@ -34,6 +34,11 @@
     font-weight: 500;
 }
 
+.st-outline {
+    border: 1px solid #E52528;
+    color: #E52528;
+}
+
 .passage-gap {
     margin-right: 55px;
 }

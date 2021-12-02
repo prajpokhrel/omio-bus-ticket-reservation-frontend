@@ -9,8 +9,9 @@ import FareTermsCard from "./FareTermsCard/FareTermsCard";
 import MainPassengerForm from "./PassengerDetailsForm/MainPassengerForm";
 import ExtraPassengerForm from "./PassengerDetailsForm/ExtraPassengerForm";
 import axios from "../../axios-omio-frontend";
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import moment from "moment";
+import useAuth from "../../hooks/useAuth";
 
 const PassengerDetail = () => {
 
@@ -19,7 +20,9 @@ const PassengerDetail = () => {
     const [formData, setFormData] = useState({});
     let extraPassengerForm = [];
     const params = useParams();
+    const navigate = useNavigate();
     const {journeyId, travelers} = params;
+    const { authed, currentUser } = useAuth();
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -58,7 +61,18 @@ const PassengerDetail = () => {
                 country: formData[`country${i}`] || ''
             });
         }
-        console.log(arrangedFormData);
+        try {
+            axios.post('/reservations/book-seat', {passengers: arrangedFormData, mainAccount: currentUser, selectedSeats, journeyDetails: journeyDetails.id})
+                .then((response) => {
+                    console.log(response.data);
+                    navigate('/profile');
+                }).catch((error) => {
+                    console.log(error.response);
+                }
+            );
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const inputChangeHandler = (event) => {

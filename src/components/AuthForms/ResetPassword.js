@@ -1,45 +1,68 @@
-import React from "react";
+import React, {useState} from "react";
 import "../BookingRetrieve/BookingRetrieve.css";
 import retrieveBooking from "../../assets/email-tickets.svg";
 import "../FormElements/FormElements.css";
 import NavbarOne from "../NavbarOne/NavbarOne";
+import {useParams, useNavigate} from "react-router-dom";
+import axios from "../../axios-omio-frontend";
 
-const ChangePassword = () => {
+const ResetPassword = () => {
+
+    const [newPassword, setNewPassword] = useState({
+        newPassword: ''
+    });
+
+    const params = useParams();
+    const navigate = useNavigate();
+
+    const {token, userId} = params;
+
+    const inputChangeHandler = (event) => {
+        setNewPassword({...newPassword, [event.target.name]: event.target.value});
+    }
+
+    const handlePasswordResetSubmit = (event) => {
+        event.preventDefault();
+        axios.post('/users/resetPassword', {newPassword, token, userId})
+            .then((response) => {
+                console.log(response.data);
+                navigate('/login');
+            }).catch((error) => {
+                console.log(error.response);
+        });
+    }
+
     return (
         <>
             <NavbarOne />
             <section className="retrieve-booking">
                 <div className="container">
                     <div className="row p-2">
-                        <h1 className="booking-title"><b>Change Password</b></h1>
+                        <h1 className="booking-title"><b>Reset Password</b></h1>
                         <div className="col-12 col-sm-12 col-md-8 col-lg-6 retrieve-container">
                             <div className="row">
                                 <div className="col-12">
-                                    <h4 className="retrieve-title"><b>Change your current password</b></h4>
+                                    <h4 className="retrieve-title"><b>Reset your current password</b></h4>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-12 mt-2 retrieve-content">
-                                    Enter your current password, and select new password for your account.
+                                    Enter new password for your account.
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-12 mt-3">
                                     <form className="row g-3">
-                                        <div className="col-12">
-                                            <label htmlFor="current-pwd" className="form-label custom-labels">Current password</label>
-                                            <input name="currentPassword" type="password" className="form-control custom-inputs" id="current-pwd" />
-                                        </div>
-                                        <div className="col-md-6">
+                                        <div className="col-md-12">
                                             <label htmlFor="new-pwd" className="form-label custom-labels">New password</label>
-                                            <input name="newPassword" type="password" className="form-control custom-inputs" id="new-pwd" />
+                                            <input onChange={inputChangeHandler} name="newPassword" type="password" className="form-control custom-inputs" id="new-pwd" />
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-md-12">
                                             <label htmlFor="confirm-pwd" className="form-label custom-labels">Confirm password</label>
                                             <input name="confirmPassword" type="password" className="form-control custom-inputs" id="confirm-pwd" />
                                         </div>
                                         <div className="col-md-12">
-                                            <button className="default-button">Change password</button>
+                                            <button onClick={handlePasswordResetSubmit} className="default-button">Reset password</button>
                                         </div>
                                     </form>
                                 </div>
@@ -57,4 +80,4 @@ const ChangePassword = () => {
     );
 }
 
-export default ChangePassword;
+export default ResetPassword;

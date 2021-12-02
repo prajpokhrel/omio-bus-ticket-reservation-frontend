@@ -1,9 +1,13 @@
 import React, {useState} from "react";
 import "./NavbarTransparent.css";
 import logoLight from "../../assets/logo-light.svg";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const NavbarTransparent = () => {
+
+    const {authed, currentUser} = useAuth();
+
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light navigation-transparent-top">
@@ -23,17 +27,37 @@ const NavbarTransparent = () => {
                         </ul>
 
                         <div className="d-flex navigation-transparent-controls">
-                        <span className="nav-transparent-controllers">
-                            <Link className="nav-transparent-link" to='/booking-retrieve'>
-                                Your bookings
-                            </Link>
-                        </span>
-                            <span className="nav-transparent-controllers">
-                                <Link className="nav-transparent-link" to='/login'>Sign in</Link>
-                            </span>
-                            <span>
-                                <Link className="nav-transparent-link" to='/register'>Create an account</Link>
-                            </span>
+                            <>
+                                <span className="nav-transparent-controllers">
+                                    <Link className="nav-transparent-link" to='/booking-retrieve'>
+                                        Your bookings
+                                    </Link>
+                                </span>
+                                {
+                                    authed
+                                        ? <div className="dropdown nav-transparent-controllers">
+                                            <a className="dropdown-toggle nav-transparent-link" href="#" role="button"
+                                               id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                                Welcome, {currentUser.firstName.toLowerCase()}
+                                            </a>
+
+                                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <li><span className="nav-transparent-controllers dropdown-item"><Link to="/profile">My profile</Link></span></li>
+                                                <li><span className="nav-transparent-controllers dropdown-item"><Link to="/profile/update">Update info</Link></span></li>
+                                                <li><span className="nav-transparent-controllers dropdown-item"><Link to="/profile/change-password">Settings</Link></span></li>
+                                                <li><span className="text-dark dropdown-item">Logout</span></li>
+                                            </ul>
+                                        </div>
+                                        : <>
+                                            <span className="nav-transparent-controllers">
+                                                <Link className="nav-transparent-link" to='/login'>Sign in</Link>
+                                            </span>
+                                            <span>
+                                                <Link className="nav-transparent-link" to='/register'>Create an account</Link>
+                                            </span>
+                                        </>
+                                }
+                            </>
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,7 @@ const TicketCostDetailsCard = ({passengers, selectedSeats, journeyDetails}) => {
 
     const tripTotal = passengers * journeyDetails.routeFare;
     const reservedSeatPrice = selectedSeats.reduce((previousValue, currentValue) => {
-        return parseInt(currentValue.seatSpecificPrice) + parseInt(previousValue);
+        return parseFloat(currentValue.seatSpecificPrice) + parseFloat(previousValue);
     }, 0);
     const serviceCharge = journeyDetails.serviceTax * passengers;
     const totalAmountToPay = parseFloat(tripTotal) + parseFloat(reservedSeatPrice) + parseFloat(serviceCharge);
@@ -34,7 +34,7 @@ const TicketCostDetailsCard = ({passengers, selectedSeats, journeyDetails}) => {
                 <div className="row">
                     <div className="col outbound-ticket-details">
                         <span className="tickets-details">Service Charge</span>
-                        <span className="tickets-details">${serviceCharge}</span>
+                        <span className="tickets-details">${serviceCharge.toFixed(2)}</span>
                     </div>
                 </div>
                 <div className="row">
