@@ -1,10 +1,37 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "../BookingRetrieve/BookingRetrieve.css";
 import retrieveBooking from "../../assets/email-tickets.svg";
 import "../FormElements/FormElements.css";
 import NavbarOne from "../NavbarOne/NavbarOne";
+import axios from "../../axios-omio-frontend";
+import {useNavigate} from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const ChangePassword = () => {
+
+    const [formData, setFormData] = useState({
+        password: '',
+        newPassword: ''
+    });
+    const {currentUser} = useAuth();
+    const navigate = useNavigate();
+
+    const inputChangeHandler = (event) => {
+        setFormData({...formData, [event.target.name]: event.target.value});
+    }
+
+    const handleChangePasswordBtn = (event) => {
+        event.preventDefault();
+        axios.patch('/users/change-password', {formData, currentUser}, {
+            withCredentials: true, credentials: 'include'
+        }).then((response) => {
+            console.log(response.data);
+            navigate('/profile');
+        }).catch((error) => {
+            console.log(error.response);
+        });
+    }
+
     return (
         <>
             <NavbarOne />
@@ -28,18 +55,18 @@ const ChangePassword = () => {
                                     <form className="row g-3">
                                         <div className="col-12">
                                             <label htmlFor="current-pwd" className="form-label custom-labels">Current password</label>
-                                            <input name="currentPassword" type="password" className="form-control custom-inputs" id="current-pwd" />
+                                            <input onChange={inputChangeHandler} name="password" type="password" className="form-control custom-inputs" id="current-pwd" />
                                         </div>
                                         <div className="col-md-6">
                                             <label htmlFor="new-pwd" className="form-label custom-labels">New password</label>
-                                            <input name="newPassword" type="password" className="form-control custom-inputs" id="new-pwd" />
+                                            <input onChange={inputChangeHandler} name="newPassword" type="password" className="form-control custom-inputs" id="new-pwd" />
                                         </div>
                                         <div className="col-md-6">
                                             <label htmlFor="confirm-pwd" className="form-label custom-labels">Confirm password</label>
-                                            <input name="confirmPassword" type="password" className="form-control custom-inputs" id="confirm-pwd" />
+                                            <input onChange={inputChangeHandler} name="confirmPassword" type="password" className="form-control custom-inputs" id="confirm-pwd" />
                                         </div>
                                         <div className="col-md-12">
-                                            <button className="default-button">Change password</button>
+                                            <button onClick={handleChangePasswordBtn} className="default-button">Change password</button>
                                         </div>
                                     </form>
                                 </div>
