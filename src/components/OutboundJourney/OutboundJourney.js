@@ -55,7 +55,7 @@ const OutboundJourney = ({routeDetails, handleBookBtnClicked, source, destinatio
                 <div className="row p-2">
                     {/* Cards will go here */}
                     {/* routeDetails.length === 0 ? no routes : routeDetails.map() -- do later */}
-                    {routeDetails.map((routeDetail, index) => {
+                    {routeDetails.length !== 0 ? routeDetails.map((routeDetail, index) => {
                         return (
                             <div key={index} className="mb-3 result-card-container col-12 col-sm-12 col-md-12 col-lg-8 m-auto">
                                 <div className="row">
@@ -75,9 +75,9 @@ const OutboundJourney = ({routeDetails, handleBookBtnClicked, source, destinatio
                                             {/*{moment(`${routeDetail.arrivalDate} ${routeDetail.estimatedArrivalTime}`, 'YYYY-MM-DD HH:mm:ss').format('LT').toLowerCase()}*/}
                                         </span><br/>
                                         <span className="bus-timing-duration">
-                                            {formatDate(routeDetail.departureDate)} - {formatDate(routeDetail.arrivalDate)} -&nbsp;
+                                            {formatDate(routeDetail.departureDate)} - {formatDate(routeDetail.arrivalDate)} &nbsp;
                                         </span>
-                                        <span className="bus-timing-duration">{getDifferenceBetweenDates(routeDetail.departureDate, routeDetail.departureTime, routeDetail.arrivalDate, routeDetail.estimatedArrivalTime)}</span>
+                                        {/*<span className="bus-timing-duration">{getDifferenceBetweenDates(routeDetail.departureDate, routeDetail.departureTime, routeDetail.arrivalDate, routeDetail.estimatedArrivalTime)}</span>*/}
                                     </div>
                                     <div className="col-12 col-sm-12 order-1 order-sm-1 order-md-2 col-md-4 fare-container">
                                         <span className="fare-amount">US$ {routeDetail.routeFare * passengers}</span>
@@ -86,7 +86,7 @@ const OutboundJourney = ({routeDetails, handleBookBtnClicked, source, destinatio
                                 </div>
                                 <div className="row">
                                     <div className="col-12 col-sm-12 col-md-6 p-2">
-                                        <img className="img-fluid bus-logo-image" src={busImage} alt="bus logo" />
+                                        <img className="img-fluid bus-logo-image" src={`http://127.0.0.1:5000/busImages/${routeDetail.buses.busServiceLogo}`} alt="bus logo" />
                                     </div>
                                     <div className="col-12 col-sm-12 col-md-6 p-2 basket-container">
                                         <button onClick={() => handleBookBtnClicked(routeDetail.id)} className="default-button">Book a seat(s)</button>
@@ -97,7 +97,7 @@ const OutboundJourney = ({routeDetails, handleBookBtnClicked, source, destinatio
                                 </div>
                             </div>
                         );
-                    })}
+                    }) : <span className="lead text-center text-danger"><b>No buses found for this journey.</b></span>}
                     {/*<div className="mb-3 result-card-container col-12 col-sm-12 col-md-12 col-lg-8 m-auto">*/}
                     {/*    <div className="row">*/}
                     {/*        <div className="col-12 sorted-title">*/}

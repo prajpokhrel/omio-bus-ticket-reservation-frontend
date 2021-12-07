@@ -33,9 +33,9 @@ const ExtraPassengerForm = ({index, onInputChange}) => {
                         <div className="col-md-6">
                             <label htmlFor="id-type" className="form-label custom-labels">ID Type</label>
                             <select onChange={onInputChange} id="id-type" name={`idType${index+1}`} className="form-select custom-selects" required>
-                                <option>Select your ID Type</option>
-                                <option>National ID</option>
-                                <option>Passport</option>
+                                <option value="">Select your ID Type</option>
+                                <option value="National ID">National ID</option>
+                                <option value="Passport">Passport</option>
                             </select>
                         </div>
                         <div className="col-md-6">

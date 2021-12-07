@@ -2,7 +2,7 @@ import React from "react";
 import "../PassengerDetail.css";
 import busLogo from "../../../assets/blablabus.png";
 
-const OutboundDetailsCard = ({formatDate, fromSource, toDestination, departureDate, departureTime, arrivalDate, estimatedArrivalTime}) => {
+const OutboundDetailsCard = ({formatDate, busImage ,fromSource, toDestination, departureDate, departureTime, arrivalDate, estimatedArrivalTime}) => {
 
     return (
         <div className="row mb-3 ticket-detail-card">
@@ -14,7 +14,7 @@ const OutboundDetailsCard = ({formatDate, fromSource, toDestination, departureDa
                 {/*<span className="journey-time">15h 15m</span>*/}
                 <div className="row mt-2">
                     <div className="col-12">
-                        <img className="img-fluid bus-logo-passenger" src={busLogo} alt="bus-logo-ig" />
+                        <img className="img-fluid bus-logo-passenger" src={`http://127.0.0.1:5000/busImages/${busImage.buses.busServiceLogo}`} alt="bus-logo-ig" />
                     </div>
                 </div>
             </div>

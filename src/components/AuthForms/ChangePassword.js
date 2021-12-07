@@ -13,6 +13,7 @@ const ChangePassword = () => {
         password: '',
         newPassword: ''
     });
+    const [error, setError] = useState("");
     const {currentUser} = useAuth();
     const navigate = useNavigate();
 
@@ -26,8 +27,10 @@ const ChangePassword = () => {
             withCredentials: true, credentials: 'include'
         }).then((response) => {
             console.log(response.data);
+            alert("Password changed successfully, redirecting to profile.");
             navigate('/profile');
         }).catch((error) => {
+            setError(error.response.data);
             console.log(error.response);
         });
     }
@@ -51,8 +54,11 @@ const ChangePassword = () => {
                                 </div>
                             </div>
                             <div className="row">
+                                {error.length !== 0 && <span className="text-danger small">{error}</span>}
+                            </div>
+                            <div className="row">
                                 <div className="col-12 mt-3">
-                                    <form className="row g-3">
+                                    <form className="row g-3" onSubmit={handleChangePasswordBtn}>
                                         <div className="col-12">
                                             <label htmlFor="current-pwd" className="form-label custom-labels">Current password</label>
                                             <input onChange={inputChangeHandler} name="password" type="password" className="form-control custom-inputs" id="current-pwd" required />
@@ -66,7 +72,7 @@ const ChangePassword = () => {
                                             <input onChange={inputChangeHandler} name="confirmPassword" type="password" className="form-control custom-inputs" id="confirm-pwd" required />
                                         </div>
                                         <div className="col-md-12">
-                                            <button onClick={handleChangePasswordBtn} className="default-button">Change password</button>
+                                            <button className="default-button">Change password</button>
                                         </div>
                                     </form>
                                 </div>

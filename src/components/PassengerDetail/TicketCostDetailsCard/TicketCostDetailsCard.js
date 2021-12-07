@@ -23,7 +23,7 @@ const TicketCostDetailsCard = ({passengers, selectedSeats, journeyDetails}) => {
                     <div className="col outbound-ticket-details">
                         <span className="tickets-details">Reserved Seat Charge</span>
                         <span className="tickets-details">
-                            ${reservedSeatPrice
+                            ${reservedSeatPrice.toFixed(2)
                                 // selectedSeats.reduce((previousValue, currentValue) => {
                                 //     return parseInt(currentValue.seatSpecificPrice) + parseInt(previousValue);
                                 // }, 0)

@@ -47,6 +47,14 @@ const SeatReservation = () => {
     }
 
     const handlePassengerDetailsBtnClicked = () => {
+        if (selectedSeats.length > travelers) {
+            alert(`You cannot select more than ${travelers} seats.`);
+            return;
+        }
+        if (selectedSeats.length < travelers) {
+            alert(`Please select seats for ${travelers} passengers.`);
+            return;
+        }
         localStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
         navigate(`/passenger-details/${journeyDetails.id}/${travelers}`);
     }

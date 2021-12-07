@@ -12,6 +12,7 @@ import axios from "../../axios-omio-frontend";
 import {useParams, useNavigate} from "react-router-dom";
 import moment from "moment";
 import useAuth from "../../hooks/useAuth";
+import BusDetails from "./BusDetails/BusDetails";
 
 const PassengerDetail = () => {
 
@@ -30,7 +31,7 @@ const PassengerDetail = () => {
             axios.get(`/destinations/journey-details/with-bus/${journeyId}`)
                 .then((response) => {
                     setJourneyDetails(response.data);
-                    console.log(response.data);
+                    console.log("THIS IS ME", response.data);
                 }).catch((error) => {
                 console.log(error.response);
             });
@@ -67,6 +68,7 @@ const PassengerDetail = () => {
                     console.log(response.data);
                     navigate('/reservation-success');
                 }).catch((error) => {
+                    alert("Oops! Something failed. Please fill in the data correctly.");
                     console.log(error.response);
                 }
             );
@@ -108,19 +110,29 @@ const PassengerDetail = () => {
 
                         <div className="p-2 col-12 col-sm-12 col-md-12 col-lg-5">
 
-                            <OutboundDetailsCard fromSource={journeyDetails.fromSource}
-                                                 toDestination={journeyDetails.toDestination}
-                                                 departureDate={journeyDetails.departureDate}
-                                                 arrivalDate={journeyDetails.arrivalDate}
-                                                 departureTime={journeyDetails.departureTime}
-                                                 estimatedArrivalTime={journeyDetails.estimatedArrivalTime}
-                                                 formatDate={formatDate}
-                                                 // busImage={} later
-                            />
+                            {
+                                Object.keys(journeyDetails).length !== 0 ?
+                                    <>
+                                        <OutboundDetailsCard fromSource={journeyDetails.fromSource}
+                                                             toDestination={journeyDetails.toDestination}
+                                                             departureDate={journeyDetails.departureDate}
+                                                             arrivalDate={journeyDetails.arrivalDate}
+                                                             departureTime={journeyDetails.departureTime}
+                                                             estimatedArrivalTime={journeyDetails.estimatedArrivalTime}
+                                                             busImage={journeyDetails}
+                                                             formatDate={formatDate}
+                                            // busImage={} later
+                                        />
 
-                            <TicketCostDetailsCard passengers={travelers} journeyDetails={journeyDetails} selectedSeats={selectedSeats}/>
+                                        <BusDetails busDetails={journeyDetails}/>
+
+                                        <TicketCostDetailsCard passengers={travelers} journeyDetails={journeyDetails} selectedSeats={selectedSeats}/>
+                                    </> : <span className="Lead"><b>Loading...</b></span>
+                            }
 
                             <FareTermsCard />
+
+
 
                         </div>
                     </div>

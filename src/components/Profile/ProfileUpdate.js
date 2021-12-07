@@ -57,15 +57,15 @@ const ProfileUpdate = () => {
                                     <form className="row g-3">
                                         <div className="col-lg-6">
                                             <label htmlFor="first-name" className="form-label custom-labels">First Name</label>
-                                            <input onChange={inputChangeHandler} value={personalInfo.firstName} name="firstName" type="text" className="form-control custom-inputs" id="first-name" />
+                                            <input onChange={inputChangeHandler} value={personalInfo.firstName} name="firstName" type="text" className="form-control custom-inputs" id="first-name" required />
                                         </div>
                                         <div className="col-lg-6">
                                             <label htmlFor="last-name" className="form-label custom-labels">Last Name</label>
-                                            <input onChange={inputChangeHandler} value={personalInfo.lastName} name="lastName" type="text" className="form-control custom-inputs" id="last-name" />
+                                            <input onChange={inputChangeHandler} value={personalInfo.lastName} name="lastName" type="text" className="form-control custom-inputs" id="last-name" required />
                                         </div>
                                         <div className="col-12">
                                             <label htmlFor="email" className="form-label custom-labels">You email address</label>
-                                            <input onChange={inputChangeHandler} value={personalInfo.email} name="email" type="email" className="form-control custom-inputs" id="email" />
+                                            <input onChange={inputChangeHandler} value={personalInfo.email} name="email" type="email" className="form-control custom-inputs" id="email" required />
                                         </div>
                                         <div className="col-12">
                                             <button onClick={handleUpdateBtnSubmit} className="default-button">Update profile</button>
