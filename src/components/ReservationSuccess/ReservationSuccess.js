@@ -2,8 +2,16 @@ import React from "react";
 import "../ReservationSoldOut/ReservationSoldOut.css";
 import NavbarOne from "../NavbarOne/NavbarOne";
 import "../FormElements/FormElements.css";
+import {useNavigate} from "react-router-dom";
 
 const ReservationSuccess = () => {
+
+    const navigate = useNavigate();
+
+    const handleBackToProfileBtn = () => {
+        navigate('/profile');
+    }
+
     return (
         <>
             <NavbarOne />
@@ -16,7 +24,7 @@ const ReservationSuccess = () => {
                             <h4 className="sold-out-title text-center">Congratulations! your tickets have been booked.</h4>
                             <span className="sold-out-description text-center">We have sent the ticket details to your email.
                                 Thank you for traveling with Omio. Hope to see you soon. Have a wonderful journey.</span><br/>
-                            <button className="default-button default-btn-full-width">Back to profile</button>
+                            <button onClick={handleBackToProfileBtn} className="default-button default-btn-full-width">Back to profile</button>
                         </div>
                     </div>
                 </div>

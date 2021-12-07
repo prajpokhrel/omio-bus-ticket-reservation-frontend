@@ -17,6 +17,7 @@ import RequireAuth from "./hooks/RequireAuth";
 import BookingInvoice from "./components/BookingInvoice/BookingInvoice";
 import ResetConfirmation from "./components/AuthForms/ResetConfirmation";
 import ResetPassword from "./components/AuthForms/ResetPassword";
+import ReservationSuccess from "./components/ReservationSuccess/ReservationSuccess";
 
 function App() {
 
@@ -27,6 +28,13 @@ function App() {
             <Route path="/login" element={<LoginContainer />} />
             <Route path="/forgot-password" element={<ForgotPasswordContainer />} />
             <Route path="/users/reset-confirmation" element={<ResetConfirmation />} />
+            <Route path="/reservation-success"
+                   element={
+                       <RequireAuth>
+                           <ReservationSuccess />
+                       </RequireAuth>
+                   }
+            />
             <Route path="/users/reset-password/:token/:userId" element={<ResetPassword />} />
             <Route path="/journey-planner/:fromSource/:toDestination/:travelers/:departureDate" element={<JourneyPlanner />} />
             <Route path="/seat-reservation/:journeyId/:travelers"

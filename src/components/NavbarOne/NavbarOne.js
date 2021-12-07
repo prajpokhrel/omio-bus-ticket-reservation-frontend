@@ -10,8 +10,11 @@ const NavbarOne = () => {
     const navigate = useNavigate();
 
     const handleCustomerLogout = () => {
-        logout();
-        navigate('/');
+        logout().then(() => {
+            navigate('/');
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     return (
@@ -46,10 +49,10 @@ const NavbarOne = () => {
                                     </a>
 
                                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <li><span className="dropdown-item"><Link to="/profile">My profile</Link></span></li>
-                                        <li><span className="dropdown-item"><Link to="/profile/update">Update info</Link></span></li>
-                                        <li><span className="dropdown-item"><Link to="/profile/change-password">Settings</Link></span></li>
-                                        <li><span className="dropdown-item">Logout</span></li>
+                                        <li><span className="nav-controllers dropdown-item"><Link className="text-dark" to="/profile">My profile</Link></span></li>
+                                        <li><span className="nav-controllers dropdown-item"><Link className="text-dark" to="/profile/update">Update info</Link></span></li>
+                                        <li><span className="nav-controllers dropdown-item"><Link className="text-dark" to="/profile/change-password">Settings</Link></span></li>
+                                        <li><span onClick={handleCustomerLogout} className="nav-controllers-l dropdown-item">Logout</span></li>
                                     </ul>
                                 </div>
                                 : <>

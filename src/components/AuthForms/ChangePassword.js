@@ -55,15 +55,15 @@ const ChangePassword = () => {
                                     <form className="row g-3">
                                         <div className="col-12">
                                             <label htmlFor="current-pwd" className="form-label custom-labels">Current password</label>
-                                            <input onChange={inputChangeHandler} name="password" type="password" className="form-control custom-inputs" id="current-pwd" />
+                                            <input onChange={inputChangeHandler} name="password" type="password" className="form-control custom-inputs" id="current-pwd" required />
                                         </div>
                                         <div className="col-md-6">
                                             <label htmlFor="new-pwd" className="form-label custom-labels">New password</label>
-                                            <input onChange={inputChangeHandler} name="newPassword" type="password" className="form-control custom-inputs" id="new-pwd" />
+                                            <input onChange={inputChangeHandler} name="newPassword" type="password" className="form-control custom-inputs" id="new-pwd" required />
                                         </div>
                                         <div className="col-md-6">
                                             <label htmlFor="confirm-pwd" className="form-label custom-labels">Confirm password</label>
-                                            <input onChange={inputChangeHandler} name="confirmPassword" type="password" className="form-control custom-inputs" id="confirm-pwd" />
+                                            <input onChange={inputChangeHandler} name="confirmPassword" type="password" className="form-control custom-inputs" id="confirm-pwd" required />
                                         </div>
                                         <div className="col-md-12">
                                             <button onClick={handleChangePasswordBtn} className="default-button">Change password</button>

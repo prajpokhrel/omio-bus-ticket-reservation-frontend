@@ -19,19 +19,38 @@ function useAuth() {
                 setAuthed(true);
             }).catch((error) => {
                 setAuthed(false);
-                setCurrentUser({});
                 console.log(error.response);
             }
         );
     }
 
+    const refreshCurrentUser = () => {
+        axios.get('/users/me', {withCredentials: true, credentials: 'inclide'})
+            .then((response) => {
+                setCurrentUser(response.data);
+            }).catch((error) => {
+                console.log(error);
+        })
+    }
+
     const logOutUsers = () => {
-        // do something here...
+        axios.get('/users/logout', {withCredentials: true, credentials: 'include'})
+            .then((response) => {
+                setAuthed(false);
+            }).catch((error) => {
+                console.log(error);
+        });
     }
 
     return {
         authed,
         currentUser,
+        refresh() {
+            return new Promise((res) => {
+                refreshCurrentUser();
+                res();
+            });
+        },
         login() {
             return new Promise((res) => {
                 getCurrentLoggedInUser();
@@ -39,7 +58,10 @@ function useAuth() {
             });
         },
         logout() {
-            // do something later...
+            return new Promise((res) => {
+                logOutUsers();
+                res();
+            });
         }
     }
 }

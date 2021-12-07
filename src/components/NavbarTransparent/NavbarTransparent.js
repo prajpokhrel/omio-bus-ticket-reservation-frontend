@@ -6,7 +6,16 @@ import useAuth from "../../hooks/useAuth";
 
 const NavbarTransparent = () => {
 
-    const {authed, currentUser} = useAuth();
+    const {authed, logout, currentUser} = useAuth();
+    const navigate = useNavigate();
+
+    const handleCustomerLogout = () => {
+        logout().then(() => {
+            navigate('/');
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
 
     return (
         <>
@@ -42,10 +51,10 @@ const NavbarTransparent = () => {
                                             </a>
 
                                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <li><span className="nav-transparent-controllers dropdown-item"><Link to="/profile">My profile</Link></span></li>
-                                                <li><span className="nav-transparent-controllers dropdown-item"><Link to="/profile/update">Update info</Link></span></li>
-                                                <li><span className="nav-transparent-controllers dropdown-item"><Link to="/profile/change-password">Settings</Link></span></li>
-                                                <li><span className="text-dark dropdown-item">Logout</span></li>
+                                                <li><span className="nav-transparent-controllers dropdown-item"><Link className="text-dark" to="/profile">My profile</Link></span></li>
+                                                <li><span className="nav-transparent-controllers dropdown-item"><Link className="text-dark" to="/profile/update">Update info</Link></span></li>
+                                                <li><span className="nav-transparent-controllers dropdown-item"><Link className="text-dark" to="/profile/change-password">Settings</Link></span></li>
+                                                <li><span onClick={handleCustomerLogout} className="text-dark dropdown-item">Logout</span></li>
                                             </ul>
                                         </div>
                                         : <>

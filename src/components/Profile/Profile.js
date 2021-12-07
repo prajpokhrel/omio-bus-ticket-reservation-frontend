@@ -53,7 +53,8 @@ const Profile = ()  => {
                             <div className="row">
                                 <div className="col-12">
                                     <Accordion flush>
-                                        {myReservations.map((booking, index) => {
+                                        {myReservations.length === 0 ? <h1 className="lead text-center display-4 text-warning">You do not have any reservations.</h1> :
+                                            myReservations.map((booking, index) => {
                                             return (
                                                 <Accordion.Item eventKey={`${index}`}>
                                                     <Accordion.Header>
@@ -74,8 +75,14 @@ const Profile = ()  => {
                                                                 </div>
                                                             </div>
                                                             <div className="row">
-                                                                <h5 className="mb-0">Departure Date & Time</h5>
-                                                                <span className="lead">{formatDateTime(booking.destinationDetails.departureDate, booking.destinationDetails.departureTime)}</span>
+                                                                <div className="col-12 col-md-6">
+                                                                    <h5 className="mb-0">Departure Date & Time</h5>
+                                                                    <span className="lead">{formatDateTime(booking.destinationDetails.departureDate, booking.destinationDetails.departureTime)}</span>
+                                                                </div>
+                                                                <div className="col-12 col-md-6">
+                                                                    <h5 className="mb-0">Seat(s) Number</h5>
+                                                                    <span className="lead">{booking.seatsNumber}</span>
+                                                                </div>
                                                             </div><hr/>
                                                             <div className="row">
                                                                 <div className="col-12 col-md-6">

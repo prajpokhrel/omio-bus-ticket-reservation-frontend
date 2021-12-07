@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import "./BookingInvoice.css";
 import logoDark from "../../assets/logo-dark.svg";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import axios from "../../axios-omio-frontend";
 import moment from "moment";
 
@@ -45,17 +45,19 @@ const BookingInvoice = () => {
                                     <div className="p-3">
                                         <div className="d-flex justify-content-between flex-md-row flex-column pb-2">
                                             <div>
-                                                <div className="d-flex mb-1">
-                                                    <img src={logoDark} width="100" alt="dark-logo" />
+                                                <div className="d-flex mb-3">
+                                                    <Link to="/profile">
+                                                        <img src={logoDark} width="200" alt="dark-logo" />
+                                                    </Link>
                                                 </div>
-                                                <p className="mb-2">Office 3028, 450 Bay Street</p>
-                                                <p className="mb-2">Toronto, Ontario M5J 2R8 91, Canada</p>
-                                                <p className="mb-0">+1 (123) 456 7891, +44 (876) 543 2198</p>
+                                                <p className="mb-0">Office 3028, 450 Bay Street</p>
+                                                <p className="mb-0">Toronto, Ontario M5J 2R8 91, Canada</p>
+                                                <p className="mb-2">+1 (123) 456 7891, +44 (876) 543 2198</p>
                                             </div>
                                             <div className="mt-md-0 mt-2">
-                                                <span className="text-end lead mb-1">Booking Code: {invoiceDetail.bookingCode}</span>
+                                                <span className="text-end lead mb-1"><strong>Booking Code:</strong> {invoiceDetail.bookingCode}</span>
                                                 <div className="mb-50">
-                                                    <span className="invoice-date-title">Booking Date:</span>
+                                                    <span className="invoice-date-title lead"><strong>Booking Date:</strong></span>
                                                     <span className="lead"> {formatDate(invoiceDetail.bookingTime)}</span>
                                                 </div>
                                             </div>
@@ -64,42 +66,42 @@ const BookingInvoice = () => {
                                         <hr className="my-2"/>
                                         <div className="row pb-2 pt-2">
                                             <div className="col-12">
-                                                <h6>Bus Details:</h6>
+                                                <h5>Bus Details:</h5>
                                                 <img className="img-fluid" width="100" src={`http://127.0.0.1:5000/busImages/${busDetail.busServiceLogo}`} alt="bus-service-logo"/>
-                                                <p>Bus service name: {busDetail.busServiceName}</p>
-                                                <p>Bus number: {busDetail.busNumber}</p>
+                                                <p className="mb-0 lead"><strong>Bus service name:</strong> {busDetail.busServiceName}</p>
+                                                <p className="mb-0 lead"><strong>Bus number:</strong> {busDetail.busNumber}</p>
                                             </div>
                                         </div>
                                         <hr className="my-1"/>
                                         <div className="row pb-2">
                                             <div className="col-sm-6">
-                                                <h6 className="mb-1">Invoice To:</h6>
-                                                <p className="mb-25">{invoiceDetail.mainUserDetails.firstName}&nbsp;{invoiceDetail.mainUserDetails.lastName}</p>
-                                                <p className="mb-0">{invoiceDetail.mainUserDetails.email}</p>
+                                                <h5 className="mb-1"><strong>Invoice To:</strong></h5>
+                                                <p className="mb-0 lead"><strong>Name: </strong>{invoiceDetail.mainUserDetails.firstName}&nbsp;{invoiceDetail.mainUserDetails.lastName}</p>
+                                                <p className="mb-0 lead"><strong>E-mail: </strong>{invoiceDetail.mainUserDetails.email}</p>
                                             </div>
                                             <div className="col-sm-6 mt-2">
-                                                <h6 className="mb-1">Journey Details:</h6>
+                                                <h5 className="mb-1"><strong>Journey Details:</strong></h5>
                                                 <table>
                                                     <tbody>
                                                     <tr>
-                                                        <td className="pe-1">Departure:</td>
-                                                        <td>{invoiceDetail.destinationDetails.fromSource}</td>
+                                                        <td className="pe-1 lead"><strong>Departure:</strong></td>
+                                                        <td className="lead">{invoiceDetail.destinationDetails.fromSource}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td className="pe-1">Departure Date & Time:</td>
-                                                        <td>{formatDateTime(invoiceDetail.destinationDetails.departureDate, invoiceDetail.destinationDetails.departureTime)}</td>
+                                                        <td className="pe-1 lead"><strong>Departure Date & Time:</strong></td>
+                                                        <td className="lead">{formatDateTime(invoiceDetail.destinationDetails.departureDate, invoiceDetail.destinationDetails.departureTime)}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td className="pe-1">Arrival:</td>
-                                                        <td>{invoiceDetail.destinationDetails.toDestination}</td>
+                                                        <td className="pe-1 lead"><strong>Arrival:</strong></td>
+                                                        <td className="lead">{invoiceDetail.destinationDetails.toDestination}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td className="pe-1">Arrival Date & Time:</td>
-                                                        <td>{formatDateTime(invoiceDetail.destinationDetails.arrivalDate, invoiceDetail.destinationDetails.estimatedArrivalTime)}</td>
+                                                        <td className="pe-1 lead"><strong>Arrival Date & Time:</strong></td>
+                                                        <td className="lead">{formatDateTime(invoiceDetail.destinationDetails.arrivalDate, invoiceDetail.destinationDetails.estimatedArrivalTime)}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td className="pe-1">Total Route Amount</td>
-                                                        <td>US$ {invoiceDetail.totalTravelAmount}</td>
+                                                        <td className="pe-1 lead"><strong>Total Route Amount:</strong></td>
+                                                        <td className="lead">US$ {invoiceDetail.totalTravelAmount}</td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
@@ -107,7 +109,7 @@ const BookingInvoice = () => {
                                         </div>
 
                                         <div className="table-responsive mt-2">
-                                            {/*<h3>Passenger(s) details</h3>*/}
+                                            <h3>Passenger(s) details</h3>
                                             <table className="table m-0">
                                                 <thead>
                                                 <tr>
@@ -155,7 +157,7 @@ const BookingInvoice = () => {
                                             <div className="col-12">
                                                 <span className="fw-bold">Note: </span>
                                                 <span>
-                                                    It was pleasure serving you, in your journey. We hope you will keep us in mind for future travel. Thank You!
+                                                    It was pleasure serving you in your journey. We hope you will keep us in mind for future travel. Thank You!
                                                 </span>
                                             </div>
                                         </div>
@@ -164,7 +166,7 @@ const BookingInvoice = () => {
                                 </div>
                             </div>
                         </div>
-                    </> : 'Loading....'
+                    </> : <><h1>We are getting your tickets details...</h1></>
             }
         </>
     );

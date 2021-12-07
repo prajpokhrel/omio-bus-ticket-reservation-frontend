@@ -55,11 +55,11 @@ const ResetPassword = () => {
                                     <form className="row g-3">
                                         <div className="col-md-12">
                                             <label htmlFor="new-pwd" className="form-label custom-labels">New password</label>
-                                            <input onChange={inputChangeHandler} name="newPassword" type="password" className="form-control custom-inputs" id="new-pwd" />
+                                            <input onChange={inputChangeHandler} name="newPassword" type="password" className="form-control custom-inputs" id="new-pwd" required />
                                         </div>
                                         <div className="col-md-12">
                                             <label htmlFor="confirm-pwd" className="form-label custom-labels">Confirm password</label>
-                                            <input name="confirmPassword" type="password" className="form-control custom-inputs" id="confirm-pwd" />
+                                            <input name="confirmPassword" type="password" className="form-control custom-inputs" id="confirm-pwd" required />
                                         </div>
                                         <div className="col-md-12">
                                             <button onClick={handlePasswordResetSubmit} className="default-button">Reset password</button>

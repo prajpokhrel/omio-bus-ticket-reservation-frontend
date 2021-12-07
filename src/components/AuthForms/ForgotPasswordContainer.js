@@ -11,6 +11,7 @@ const ForgotPasswordContainer = () => {
     const [forgotEmail, setForgotEmail] = useState({
         forgotEmail: ''
     });
+    const [error, setError] = useState("");
 
     const navigate = useNavigate();
 
@@ -26,6 +27,7 @@ const ForgotPasswordContainer = () => {
                 alert(response.data);
                 navigate('/users/reset-confirmation');
             }).catch((error) => {
+                setError(error.response.data);
                 console.log(error.response.data);
         });
     }
@@ -43,7 +45,7 @@ const ForgotPasswordContainer = () => {
                             <div className="row p-2">
                                 <div className="col-12">
                                     <h3 className="auth-title"><b>Forgot your password?</b></h3>
-                                    <form className="row g-3">
+                                    <form className="row g-3" onSubmit={handleResetSubmitBtn}>
                                         <div className="col-12">
                                         <span className="privacy-policy">
                                             We will send you a verification code via email. You can use this to choose a new password.
@@ -51,10 +53,11 @@ const ForgotPasswordContainer = () => {
                                         </div>
                                         <div className="col-12">
                                             <label htmlFor="email" className="form-label custom-labels">You email address</label>
-                                            <input onChange={inputChangedHandler} name="forgotEmail" type="email" className="form-control custom-inputs" id="email" />
+                                            <input onChange={inputChangedHandler} name="forgotEmail" type="email" className="form-control custom-inputs" id="email" required />
+                                            {error.length !== 0 && <span className="text-danger small">{error}</span>}
                                         </div>
                                         <div className="col-12">
-                                            <button onClick={handleResetSubmitBtn} className="default-button default-btn-full-width">Send Code</button>
+                                            <button className="default-button default-btn-full-width">Send Code</button>
                                         </div>
                                     </form>
                                     <div className="col-12 mt-2 text-center">

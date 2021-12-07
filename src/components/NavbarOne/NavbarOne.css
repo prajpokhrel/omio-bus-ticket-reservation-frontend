@@ -23,5 +23,14 @@
 
 .nav-controllers {
     margin-right: 30px;
+    cursor: pointer;
+    font-size: 14px !important;
 }
+
+.nav-controllers-l {
+    cursor: pointer;
+    font-weight: 500;
+}
+
+
 

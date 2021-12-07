@@ -65,7 +65,7 @@ const PassengerDetail = () => {
             axios.post('/reservations/book-seat', {passengers: arrangedFormData, mainAccount: currentUser, selectedSeats, journeyDetails: journeyDetails.id})
                 .then((response) => {
                     console.log(response.data);
-                    navigate('/profile');
+                    navigate('/reservation-success');
                 }).catch((error) => {
                     console.log(error.response);
                 }

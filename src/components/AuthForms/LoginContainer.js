@@ -14,6 +14,8 @@ const LoginContainer = () => {
         password: ''
     });
 
+    const [loginError, setLoginError] = useState("");
+
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const {login} = useAuth();
@@ -35,6 +37,7 @@ const LoginContainer = () => {
 
         } catch (error) {
             console.log(error.response.data);
+            setLoginError(error.response.data);
         }
 
     };
@@ -64,11 +67,13 @@ const LoginContainer = () => {
                                     <form className="row g-3" onSubmit={loginHandler}>
                                         <div className="col-12">
                                             <label htmlFor="email" className="form-label custom-labels">You email address</label>
-                                            <input onChange={inputChangedHandler} name="email" type="email" className="form-control custom-inputs" id="email" />
+                                            <input onChange={inputChangedHandler} name="email" type="email" className="form-control custom-inputs" id="email" required/>
+                                            {loginError.length !== 0 && <span className="text-danger small">{loginError}</span>}
                                         </div>
                                         <div className="col-12">
                                             <label htmlFor="password" className="form-label custom-labels">Your password</label>
-                                            <input onChange={inputChangedHandler} name="password" type={showPassword ? 'text' : 'password'} className="form-control custom-inputs" id="password" />
+                                            <input onChange={inputChangedHandler} name="password" type={showPassword ? 'text' : 'password'} className="form-control custom-inputs" id="password" required />
+                                            {loginError.length !== 0 && <span className="text-danger small">{loginError}</span>}
                                         </div>
                                         <div className="col-12">
                                             <div className="form-check">

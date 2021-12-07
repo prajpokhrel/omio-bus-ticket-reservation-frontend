@@ -15,6 +15,7 @@ const RegisterContainer = () => {
         password: ''
     });
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState("");
 
     const navigate = useNavigate();
 
@@ -29,6 +30,7 @@ const RegisterContainer = () => {
             navigate('/login');
         } catch (error) {
             console.log(error.response.data);
+            setError(error.response.data);
         }
     }
 
@@ -57,19 +59,20 @@ const RegisterContainer = () => {
                                     <form className="row g-3" onSubmit={registerHandler}>
                                         <div className="col-lg-6">
                                             <label htmlFor="first-name" className="form-label custom-labels">First Name</label>
-                                            <input onChange={inputChangedHandler} name="firstName" type="text" className="form-control custom-inputs" id="first-name" />
+                                            <input onChange={inputChangedHandler} name="firstName" type="text" className="form-control custom-inputs" id="first-name" required/>
                                         </div>
                                         <div className="col-lg-6">
                                             <label htmlFor="last-name" className="form-label custom-labels">Last Name</label>
-                                            <input onChange={inputChangedHandler} name="lastName" type="text" className="form-control custom-inputs" id="last-name" />
+                                            <input onChange={inputChangedHandler} name="lastName" type="text" className="form-control custom-inputs" id="last-name" required/>
                                         </div>
                                         <div className="col-12">
                                             <label htmlFor="email" className="form-label custom-labels">You email address</label>
-                                            <input onChange={inputChangedHandler} name="email" type="email" className="form-control custom-inputs" id="email" />
+                                            <input onChange={inputChangedHandler} name="email" type="email" className="form-control custom-inputs" id="email" required/>
+                                            {error.length !== 0 && <span className="text-danger small">{error}</span>}
                                         </div>
                                         <div className="col-12">
                                             <label htmlFor="password" className="form-label custom-labels">Your password</label>
-                                            <input onChange={inputChangedHandler} name="password" type={showPassword ? "text" : "password"} className="form-control custom-inputs" id="password" />
+                                            <input onChange={inputChangedHandler} name="password" type={showPassword ? "text" : "password"} className="form-control custom-inputs" id="password" required/>
                                         </div>
                                         <div className="col-12">
                                             <div className="form-check">

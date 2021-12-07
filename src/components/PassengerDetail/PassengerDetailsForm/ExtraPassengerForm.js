@@ -20,19 +20,19 @@ const ExtraPassengerForm = ({index, onInputChange}) => {
                     <form className="row g-3">
                         <div className="col-md-6">
                             <label htmlFor="first-name" className="form-label custom-labels">First name</label>
-                            <input onChange={onInputChange} name={`firstName${index+1}`} type="text" className="form-control custom-inputs" id="first-name" />
+                            <input onChange={onInputChange} name={`firstName${index+1}`} type="text" className="form-control custom-inputs" id="first-name" required />
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="last-name" className="form-label custom-labels">Last name</label>
-                            <input onChange={onInputChange} name={`lastName${index+1}`} type="text" className="form-control custom-inputs" id="last-name" />
+                            <input onChange={onInputChange} name={`lastName${index+1}`} type="text" className="form-control custom-inputs" id="last-name" required />
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="phone" className="form-label custom-labels">Phone number</label>
-                            <input onChange={onInputChange} name={`phoneNumber${index+1}`} type="text" className="form-control custom-inputs" id="phone" />
+                            <input onChange={onInputChange} name={`phoneNumber${index+1}`} type="text" className="form-control custom-inputs" id="phone" required />
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="id-type" className="form-label custom-labels">ID Type</label>
-                            <select onChange={onInputChange} id="id-type" name={`idType${index+1}`} className="form-select custom-selects">
+                            <select onChange={onInputChange} id="id-type" name={`idType${index+1}`} className="form-select custom-selects" required>
                                 <option>Select your ID Type</option>
                                 <option>National ID</option>
                                 <option>Passport</option>
@@ -40,7 +40,7 @@ const ExtraPassengerForm = ({index, onInputChange}) => {
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="id-detail" className="form-label custom-labels">ID Number</label>
-                            <input onChange={onInputChange} type="text" name={`idNumber${index+1}`} className="form-control custom-inputs" id="id-detail" />
+                            <input onChange={onInputChange} type="text" name={`idNumber${index+1}`} className="form-control custom-inputs" id="id-detail" required />
                         </div>
                     </form>
                 </div>

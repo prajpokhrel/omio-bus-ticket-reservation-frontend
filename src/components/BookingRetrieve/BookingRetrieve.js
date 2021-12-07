@@ -1,10 +1,35 @@
-import React from "react";
+import React, {useState} from "react";
 import "./BookingRetrieve.css";
 import retrieveBooking from "../../assets/email-tickets.svg";
 import "../FormElements/FormElements.css";
 import NavbarOne from "../NavbarOne/NavbarOne";
+import axios from "../../axios-omio-frontend";
+import {useNavigate} from "react-router-dom";
 
 const BookingRetrieve = () => {
+
+    const [formData, setFormData] = useState({
+        email: '',
+        bookingCode: ''
+    });
+
+    const navigate = useNavigate();
+
+    const inputChangedHandler = (event) => {
+        setFormData({...formData, [event.target.name]: event.target.value});
+    }
+
+    const handleRetrieveBookingBtnClicked = (event) => {
+        event.preventDefault();
+        axios.get(`/reservations/${formData.bookingCode}/${formData.email}`)
+            .then((response) => {
+                navigate(`/booking-invoice/${response.data.userId}/${response.data.reservationId}`);
+            }).catch((error) => {
+                alert("Please re-check your booking number and code.")
+        });
+
+    }
+
     return (
         <>
             <NavbarOne />
@@ -26,14 +51,14 @@ const BookingRetrieve = () => {
                             </div>
                             <div className="row">
                                 <div className="col-12 mt-3">
-                                    <form className="row g-3">
+                                    <form className="row g-3" onSubmit={handleRetrieveBookingBtnClicked}>
                                         <div className="col-md-6">
                                             <label htmlFor="booking-number" className="form-label custom-labels">Booking number</label>
-                                            <input name="bookingNumber" type="text" className="form-control custom-inputs" id="booking-number" />
+                                            <input onChange={inputChangedHandler} name="bookingCode" type="text" className="form-control custom-inputs" id="booking-number" required/>
                                         </div>
                                         <div className="col-md-6">
                                             <label htmlFor="email" className="form-label custom-labels">Email address</label>
-                                            <input name="email" type="email" className="form-control custom-inputs" id="email" />
+                                            <input onChange={inputChangedHandler} name="email" type="email" className="form-control custom-inputs" id="email" required />
                                         </div>
                                         <div className="col-md-12">
                                             <button className="default-button">Retrieve booking</button>

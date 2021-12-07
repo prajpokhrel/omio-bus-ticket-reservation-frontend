@@ -82,6 +82,10 @@ const Landing = () => {
 
     const handleSearchFormSubmit = (event) => {
         event.preventDefault();
+        if (sourceSelectedOption === null || destinationSelectedOption === null ) {
+            alert("Please select source and destination.");
+            return;
+        }
         navigate(`journey-planner/${sourceSelectedOption}/${destinationSelectedOption}/${passengerCount}/${departureDate}`);
         // console.log(sourceSelectedOption, destinationSelectedOption, departureDate, passengerCount);
     }
@@ -133,7 +137,7 @@ const Landing = () => {
                                 </div>
                                 <div className="col-lg-4">
                                     <label htmlFor="departureDate" className="form-label custom-labels">Departure Date</label>
-                                    <input name="departureDate" onChange={handleDateSelectChange} type="date" min={tomorrow} max={twoMonths} className="form-control custom-inputs" id="departureDate" />
+                                    <input required name="departureDate" onChange={handleDateSelectChange} type="date" min={tomorrow} max={twoMonths} className="form-control custom-inputs" id="departureDate" />
                                 </div>
                                 <div className="col-lg-8 passenger-count">
                                     <button className="increment-decrement-btn" onClick={handleDecrement}
