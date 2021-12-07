@@ -65,7 +65,7 @@ const ProfileUpdate = () => {
                                         </div>
                                         <div className="col-12">
                                             <label htmlFor="email" className="form-label custom-labels">You email address</label>
-                                            <input onChange={inputChangeHandler} value={personalInfo.email} name="email" type="email" className="form-control custom-inputs" id="email" required />
+                                            <input onChange={inputChangeHandler} value={personalInfo.email} disabled name="email" type="email" className="form-control custom-inputs" id="email" required />
                                         </div>
                                         <div className="col-12">
                                             <button onClick={handleUpdateBtnSubmit} className="default-button">Update profile</button>
